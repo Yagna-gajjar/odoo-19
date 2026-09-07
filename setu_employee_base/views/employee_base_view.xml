@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="employee_base_view" model="ir.ui.view">
+        <field name="name">employee.base.view</field>
+        <field name="model">employee.base</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="profile" widget="image" options="{'size': [50, 50]}" class="oe_avatar"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="designation_id"/>
+                <field name="salary"/>
+                <field name="bonus"/>
+                <field name="total_salary"/>
+                <field name="total_salary_1"/>
+                <field name="final_salary"/>
+                <field name="final_salary_1"/>
+                <field name="joining_date"/>
+                <field name="is_active"/>
+            </list>
+        </field>
+    </record>
+    <record id="employee_base_kanban_view" model="ir.ui.view">
+        <field name="name">employee.base.view</field>
+        <field name="model">employee.base</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <templates>
+                    <t t-name="card" class="position-relative">
+                        <div>
+                            <field name="profile" widget="image"/>
+                        </div>
+                        <div class="fw-bold fs-2">
+                            <field name="name"/>
+                        </div>
+                        <span>
+                            <a class="fw-bold">Department :</a>
+                            <field name="department_id"/>
+                        </span>
+                        <span>
+                            <a class="fw-bold">Designation :</a>
+                            <field name="designation_id"/>
+                        </span>
+                        <span>
+                            <a class="fw-bold">Salary :</a>
+                            <field name="salary"/>
+                        </span>
+                        <span>
+                            <a class="fw-bold">Bonus :</a>
+                            <field name="bonus"/>%
+                        </span>
+                        <span>
+                            <a class="fw-bold">joining Date :</a>
+                            <field name="joining_date"/>
+                        </span>
+                        <div class="position-absolute top-0 start-0 bg-white p-2" invisible="not is_active">
+                            <i class="fa fa-check-circle" style="color: green;"/>
+                        </div>
+                        <div class="position-absolute top-0 start-0 bg-white p-2" invisible="is_active">
+                            <i class="fa fa-times-circle" style="color: red;"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="employee_base_form_view" model="ir.ui.view">
+        <field name="name">employee.base.form</field>
+        <field name="model">employee.base</field>
+        <field name="arch" type="xml">
+            <form string="Employee Form">
+                <sheet>
+                    <h1 class="oe_title py-2">
+                        <div invisible="name">New</div>
+                        <field name="name" default="New" invisible="not name" readonly="1"/>
+                    </h1>
+
+                    <group col="3">
+                        <group string="Professional Info">
+                            <field name="name" placeholder="Enter your name...."/>
+                            <field name="profile"/>
+                            <field name="joining_date"/>
+                            <field name="is_active"/>
+                        </group>
+                        <group string="Job Info">
+                            <field name="department_id" placeholder="Sales"/>
+                            <field name="designation_id" placeholder="Jr. Python Developer"
+                                   domain="[('department_id', '=', department_id)]"/>
+                        </group>
+                        <group string="Financial Info">
+                            <field name="salary" placeholder="40000"/>
+                            <field name="bonus" placeholder="25"/>
+                            <field name="total_salary" placeholder="50000"/>
+                            <field name="total_salary_1" placeholder="50000"/>
+                            <field name="final_salary" placeholder="50000"/>
+                            <field name="final_salary_1" placeholder="50000"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record id="employee_base_action" model="ir.actions.act_window">
+        <field name="name">Employees Base</field>
+        <field name="res_model">employee.base</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+    <menuitem
+            id="employee_root_menu"
+            name="Employee"
+            sequence="10"
+    />
+    <menuitem
+        id="menu_employee"
+        name="Employees"
+        parent="employee_root_menu"
+        action="employee_base_action"
+        sequence="1"
+    />
+    <menuitem
+        id="menu_department"
+        name="Departments"
+        parent="employee_root_menu"
+        action="department_action"
+        sequence="2"
+    />
+    <menuitem
+        id="menu_designation"
+        name="Designation"
+        parent="employee_root_menu"
+        action="designation_action"
+        sequence="3"
+    />
+</odoo>

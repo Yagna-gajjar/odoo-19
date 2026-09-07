@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="department_view" model="ir.ui.view">
+        <field name="name">department.view</field>
+        <field name="model">department</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+    <record id="department_form_view" model="ir.ui.view">
+        <field name="name">department.form</field>
+        <field name="model">department</field>
+        <field name="arch" type="xml">
+            <form string="Department Form">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Enter Department..."/>
+                    </group>
+                    <notebook>
+                        <page string="Designation info" name="designation">
+                            <group>
+                                <field name="designation_id">
+                                    <list editable="bottom">
+                                        <field name="name" placeholder="Enter Designation...."/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Employees info" name="employee_info">
+                            <group>
+                                <field name="employee_base_id">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="profile"/>
+                                        <field name="is_active"/>
+                                        <field name="designation_id" domain="[('department_id', '=', department_id)]" />
+                                        <field name="department_id" />
+                                        <field name="salary"/>
+                                        <field name="bonus"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="department_action" model="ir.actions.act_window">
+        <field name="name">Department Base</field>
+        <field name="res_model">department</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

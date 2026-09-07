@@ -1,0 +1,72 @@
+<odoo>
+    <menuitem
+        id="lms_root_menu"
+        name="LMS"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_class_term"
+        name="Class and Term"
+        parent="lms_root_menu"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_class_term_join"
+        name="Active Classes"
+        parent="menu_class_term"
+        action="class_term_action"
+        sequence="11"
+    />
+
+    <menuitem
+        id="menu_class"
+        name="Classes"
+        parent="menu_class_term"
+        action="class_action"
+        sequence="12"
+    />
+
+    <menuitem
+        id="menu_term"
+        name="Term"
+        parent="menu_class_term"
+        action="term_action"
+        sequence="13"
+    />
+    <menuitem
+        id="menu_subject"
+        name="Subject"
+        parent="lms_root_menu"
+        action="subject_action"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_teacher"
+        name="Teacher"
+        parent="lms_root_menu"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_class_term_teacher"
+        name="Class Term Teacher"
+        parent="menu_teacher"
+        action="class_term_teacher_action"
+        sequence="31"
+    />
+    <menuitem
+        id="menu_all_teacher"
+        name="All Teacher"
+        parent="menu_teacher"
+        action="teacher_action"
+        sequence="32"
+    />
+
+    <menuitem
+        id="menu_student"
+        name="Student"
+        parent="lms_root_menu"
+        action="student_action"
+        sequence="40"
+    />
+</odoo>
