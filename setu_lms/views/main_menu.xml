@@ -11,14 +11,6 @@
         sequence="10"
     />
     <menuitem
-        id="menu_class_term_join"
-        name="Active Classes"
-        parent="menu_class_term"
-        action="class_term_action"
-        sequence="11"
-    />
-
-    <menuitem
         id="menu_class"
         name="Classes"
         parent="menu_class_term"
@@ -47,13 +39,7 @@
         parent="lms_root_menu"
         sequence="30"
     />
-    <menuitem
-        id="menu_class_term_teacher"
-        name="Class Term Teacher"
-        parent="menu_teacher"
-        action="class_term_teacher_action"
-        sequence="31"
-    />
+
     <menuitem
         id="menu_all_teacher"
         name="All Teacher"
@@ -61,7 +47,6 @@
         action="teacher_action"
         sequence="32"
     />
-
     <menuitem
         id="menu_student"
         name="Student"

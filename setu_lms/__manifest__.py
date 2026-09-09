@@ -4,8 +4,6 @@
     "data": [
         'security/ir.model.access.csv',
         'views/term_view.xml',
-        'views/class_term_view.xml',
-        'views/class_term_teacher_view.xml',
         'views/class_view.xml',
         'views/student_view.xml',
         'views/subject_view.xml',

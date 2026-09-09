@@ -22,9 +22,10 @@ class SchoolTerm(models.Model):
     def write(self, vals):
         result = super().write(vals)
         if 'status' in vals:
-            class_tems_records = self.env['class.term'].search([('term_id', 'in', self.ids)])
+            class_tems_records = self.env['class.term'].search([('school_term_id', 'in', self.ids)])
             class_tems_records.write({'status': vals['status']})
         return result
+
     @api.model_create_multi
     def create(self, vals_list):
         terms = super().create(vals_list)
