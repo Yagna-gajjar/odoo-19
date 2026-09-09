@@ -19,12 +19,12 @@ class SchoolTerm(models.Model):
         required=True
     )
 
-    def write(self, vals):
-        result = super().write(vals)
-        if 'status' in vals:
-            class_tems_records = self.env['class.term'].search([('school_term_id', 'in', self.ids)])
-            class_tems_records.write({'status': vals['status']})
-        return result
+    # def write(self, vals):
+    #     result = super().write(vals)
+    #     if 'status' in vals:
+    #         class_tems_records = self.env['class.term'].search([('school_term_id', 'in', self.ids)])
+    #         class_tems_records.write({'status': vals['status']})
+    #     return result
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -37,8 +37,7 @@ class SchoolTerm(models.Model):
             for school_class in classes:
                 class_term_vals.append({
                     'class_id': school_class.id,
-                    'term_id': term.id,
-                    'status': 'active',
+                    'term_id': term.id
                 })
 
         if class_term_vals:

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="class_term_list_view" model="ir.ui.view">
+        <field name="name">class.term.list.view</field>
+        <field name="model">class.term</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="display_name"/>
+                <field name="class_id"/>
+                <field name="term_id"/>
+                <field name="current_class_teacher_id"/>
+                <field name="subject_ids"/>
+            </list>
+        </field>
+    </record>
+    <record id="class_term_form_view" model="ir.ui.view">
+        <field name="name">class.term.form.view</field>
+        <field name="model">class.term</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="class_id"/>
+                    <field name="term_id"/>
+                    <field name="current_class_teacher_id"/>
+                    <field name="subject_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="class_term_action" model="ir.actions.act_window">
+        <field name="name">Class Term Assignment</field>
+        <field name="res_model">class.term</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

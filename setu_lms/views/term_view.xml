@@ -27,7 +27,7 @@
         </field>
     </record>
     <record id="term_action" model="ir.actions.act_window">
-        <field name="name">Classes</field>
+        <field name="name">Term</field>
         <field name="res_model">school.term</field>
         <field name="view_mode">list,form</field>
     </record>

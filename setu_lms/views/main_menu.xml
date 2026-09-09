@@ -11,11 +11,25 @@
         sequence="10"
     />
     <menuitem
+        id="menu_class_term_assignment"
+        name="class term assignment"
+        parent="menu_class_term"
+        action="class_term_action"
+        sequence="11"
+    />
+    <menuitem
+        id="menu_class_teacher_assignment"
+        name="class teacher assignment"
+        parent="menu_class_term"
+        action="class_teacher_assignment_action"
+        sequence="12"
+    />
+    <menuitem
         id="menu_class"
         name="Classes"
         parent="menu_class_term"
         action="class_action"
-        sequence="12"
+        sequence="13"
     />
 
     <menuitem
@@ -23,7 +37,7 @@
         name="Term"
         parent="menu_class_term"
         action="term_action"
-        sequence="13"
+        sequence="14"
     />
     <menuitem
         id="menu_subject"
@@ -39,6 +53,13 @@
         parent="lms_root_menu"
         sequence="30"
     />
+    <menuitem
+        id="menu_teacher_subject_class"
+        name="Teacher Subjects and Class"
+        parent="menu_teacher"
+        action="class_subject_teacher_action"
+        sequence="31"
+    />
 
     <menuitem
         id="menu_all_teacher"
@@ -51,7 +72,20 @@
         id="menu_student"
         name="Student"
         parent="lms_root_menu"
-        action="student_action"
         sequence="40"
+    />
+    <menuitem
+        id="menu_all_student"
+        name="Student"
+        parent="menu_student"
+        action="student_action"
+        sequence="41"
+    />
+    <menuitem
+        id="menu_student_enrollment"
+        name="Student Enrollment"
+        parent="menu_student"
+        action="student_enrollment_action"
+        sequence="42"
     />
 </odoo>

@@ -6,6 +6,12 @@ class SchoolClass(models.Model):
 
     name = fields.Char(string='Name', required=True)
     code = fields.Char(string='Class Code', required=True)
-    active = fields.Boolean(
-        default=True
+    status = fields.Selection(
+        [
+            ('active', 'Active'),
+            ('inactive', 'Inactive'),
+        ],
+        string='Status',
+        default='active',
+        required=True
     )
