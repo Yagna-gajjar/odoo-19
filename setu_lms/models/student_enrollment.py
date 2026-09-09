@@ -38,7 +38,8 @@ class StudentEnrollment(models.Model):
                 order='enrollment_no desc',
                 limit=1
             )
-            print(last_enrollment.enrollment_no)
+            self.start_date = self.class_term_id.term_id.start_date
+            self.end_date = self.class_term_id.term_id.end_date
             if last_enrollment:
                 self.enrollment_no =  f'{pref}{class_code}{format(int(last_enrollment.enrollment_no[4:])+1, "04d")}'
             else:
