@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class ClassSubjectTeacher(models.Model):
@@ -36,3 +36,9 @@ class ClassSubjectTeacher(models.Model):
         default='active',
         required=True
     )
+
+    @api.onchange('class_term_id')
+    def _change_dates(self):
+        if self.class_term_id:
+            self.start_date = self.class_term_id.term_id.start_date
+            self.end_date = self.class_term_id.term_id.end_date
