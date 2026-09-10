@@ -7,9 +7,6 @@
             <list>
                 <field name="name"/>
                 <field name="code"/>
-<!--                <field name="teacher_ids"/>-->
-<!--                <field name="student_ids"/>-->
-<!--                <field name="class_ids"/>-->
             </list>
         </field>
     </record>
@@ -21,9 +18,6 @@
                 <group>
                     <field name="name"/>
                     <field name="code"/>
-<!--                    <field name="teacher_ids"/>-->
-<!--                    <field name="student_ids"/>-->
-<!--                    <field name="class_ids"/>-->
                 </group>
             </form>
         </field>

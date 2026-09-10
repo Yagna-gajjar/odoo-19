@@ -7,10 +7,7 @@
             <list>
                 <field name="name"/>
                 <field name="code"/>
-<!--                <field name="class_teacher"/>-->
-<!--                <field name="student_id"/>-->
-<!--                <field name="subjects_ids"/>-->
-<!--                <field name="teacher_ids"/>-->
+                <field name="status"/>
             </list>
         </field>
     </record>
@@ -22,10 +19,7 @@
                 <group>
                 <field name="name"/>
                 <field name="code"/>
-<!--                <field name="class_teacher"/>-->
-<!--                <field name="student_id"/>-->
-<!--                <field name="subjects_ids"/>-->
-<!--                <field name="teacher_ids"/>-->
+                <field name="status"/>
                 </group>
             </form>
         </field>

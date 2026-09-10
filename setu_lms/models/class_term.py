@@ -17,8 +17,7 @@ class ClassTerm(models.Model):
     )
     current_class_teacher_id = fields.Many2one(
         comodel_name='teacher',
-        string='Current Class Teacher',
-        compute='_compute_current_teacher'
+        string='Current Class Teacher'
     )
 
     subject_ids = fields.Many2many(
@@ -29,6 +28,12 @@ class ClassTerm(models.Model):
     display_name = fields.Char(
         compute='_compute_display_name',
         store=True
+    )
+
+    class_teacher_assignment_ids = fields.One2many(
+        comodel_name='class.teacher.assignment',
+        inverse_name='class_term_id',
+        string='Class Teacher Assignments'
     )
 
     @api.depends('class_id', 'term_id')

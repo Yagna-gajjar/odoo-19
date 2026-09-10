@@ -16,13 +16,24 @@
         <field name="name">school.term.form.view</field>
         <field name="model">school.term</field>
         <field name="arch" type="xml">
-            <form string="Class Form">
-                <group>
-                    <field name="name"/>
-                    <field name="start_date"/>
-                    <field name="end_date"/>
-                    <field name="status"/>
-                </group>
+            <form string="Term">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="class_term_ids">
+                            <list editable="bottom">
+                                <field name="class_id"/>
+                                <field name="current_class_teacher_id"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

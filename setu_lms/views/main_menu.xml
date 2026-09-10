@@ -11,10 +11,10 @@
         sequence="10"
     />
     <menuitem
-        id="menu_class_term_assignment"
-        name="class term assignment"
+        id="menu_term"
+        name="Term"
         parent="menu_class_term"
-        action="class_term_action"
+        action="term_action"
         sequence="11"
     />
     <menuitem
@@ -25,20 +25,20 @@
         sequence="12"
     />
     <menuitem
+        id="menu_class_term_assignment"
+        name="class term assignment"
+        parent="menu_class_term"
+        action="class_term_action"
+        sequence="13"
+    />
+    <menuitem
         id="menu_class"
         name="Classes"
         parent="menu_class_term"
         action="class_action"
-        sequence="13"
-    />
-
-    <menuitem
-        id="menu_term"
-        name="Term"
-        parent="menu_class_term"
-        action="term_action"
         sequence="14"
     />
+
     <menuitem
         id="menu_subject"
         name="Subject"
@@ -54,20 +54,20 @@
         sequence="30"
     />
     <menuitem
-        id="menu_teacher_subject_class"
-        name="Teacher Subjects and Class"
-        parent="menu_teacher"
-        action="class_subject_teacher_action"
-        sequence="31"
-    />
-
-    <menuitem
         id="menu_all_teacher"
         name="All Teacher"
         parent="menu_teacher"
         action="teacher_action"
+        sequence="31"
+    />
+    <menuitem
+        id="menu_teacher_subject_class"
+        name="Teacher Subjects and Class"
+        parent="menu_teacher"
+        action="class_subject_teacher_action"
         sequence="32"
     />
+
     <menuitem
         id="menu_student"
         name="Student"

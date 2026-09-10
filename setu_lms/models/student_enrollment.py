@@ -3,6 +3,7 @@ from odoo import models, fields, api
 
 class StudentEnrollment(models.Model):
     _name = 'student.enrollment'
+    _rec_name = 'enrollment_no'
 
     enrollment_no = fields.Char(string='Enrollment Number')
     student_id = fields.Many2one(

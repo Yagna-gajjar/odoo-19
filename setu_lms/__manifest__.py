@@ -1,6 +1,7 @@
 {
     "name": "LMS",
     "version": '1.4',
+    "depends":  ['base', 'mail'],
     "data": [
         'security/ir.model.access.csv',
         'views/term_view.xml',

@@ -10,9 +10,6 @@
                 <field name="gender"/>
                 <field name="email"/>
                 <field name="phone"/>
-<!--                <field name="class_id"/>-->
-<!--                <field name="subject_ids"/>-->
-<!--                <field name="teacher_ids"/>-->
             </list>
         </field>
     </record>
@@ -31,13 +28,6 @@
                                 <field name="phone"/>
                             </group>
                         </page>
-<!--                        <page string="Educational Information">-->
-<!--                            <group>-->
-<!--                                <field name="class_id"/>-->
-<!--                                <field name="subject_ids"/>-->
-<!--                                <field name="teacher_ids"/>-->
-<!--                            </group>-->
-<!--                        </page>-->
                     </notebook>
             </form>
         </field>

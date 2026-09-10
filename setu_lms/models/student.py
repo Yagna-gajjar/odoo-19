@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from datetime import datetime
 
-
 class Student(models.Model):
     _name = 'student'
 
