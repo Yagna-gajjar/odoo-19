@@ -16,6 +16,8 @@ class ClassSubject(models.Model):
         string='Subject',
         required=True
     )
+
+
     class_subject_teacher_ids = fields.One2many(
         comodel_name='class.subject.teacher',
         inverse_name='class_subject_id',
