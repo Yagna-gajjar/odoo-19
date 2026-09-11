@@ -16,11 +16,14 @@
         <field name="model">school.class</field>
         <field name="arch" type="xml">
             <form string="Class Form">
-                <group>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="status"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

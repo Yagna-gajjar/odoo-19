@@ -9,7 +9,8 @@
                 <field name="class_id"/>
                 <field name="term_id"/>
                 <field name="current_class_teacher_id"/>
-                <field name="subject_ids"/>
+                <field name="class_subject_ids"/>
+                <field name="status"/>
             </list>
         </field>
     </record>
@@ -18,12 +19,20 @@
         <field name="model">class.term</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="class_id"/>
-                    <field name="term_id"/>
-                    <field name="current_class_teacher_id"/>
-                    <field name="subject_ids"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="term_id"/>
+                        <field name="current_class_teacher_id"/>
+                        <field name="class_subject_ids">
+                            <list>
+                                <field name="subject_id" />
+                            </list>
+                        </field>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

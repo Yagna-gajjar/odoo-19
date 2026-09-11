@@ -18,13 +18,16 @@
         <field name="model">class.teacher.assignment</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                <field name="class_term_id"/>
-                <field name="teacher_id"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
-                <field name="status"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="class_term_id"/>
+                        <field name="teacher_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

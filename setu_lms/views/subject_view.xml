@@ -15,10 +15,13 @@
         <field name="model">subject</field>
         <field name="arch" type="xml">
             <form string="Subject Form">
+                <sheet>
                 <group>
                     <field name="name"/>
                     <field name="code"/>
                 </group>
+                </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

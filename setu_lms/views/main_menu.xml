@@ -43,8 +43,21 @@
         id="menu_subject"
         name="Subject"
         parent="lms_root_menu"
-        action="subject_action"
         sequence="20"
+    />
+    <menuitem
+        id="menu_all_subject"
+        name="Subject"
+        parent="menu_subject"
+        action="subject_action"
+        sequence="21"
+    />
+    <menuitem
+        id="menu_class_subject"
+        name="Class Term Subject"
+        parent="menu_subject"
+        action="class_subject_action"
+        sequence="22"
     />
 
     <menuitem

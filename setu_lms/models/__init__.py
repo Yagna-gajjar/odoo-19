@@ -4,6 +4,7 @@ from . import subject
 from . import school_class
 from . import school_term
 from . import class_term
+from . import class_subject
 from . import class_teacher_assignment
 from . import class_subject_teacher
 from . import student_enrollment

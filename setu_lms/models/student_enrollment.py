@@ -1,8 +1,10 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class StudentEnrollment(models.Model):
     _name = 'student.enrollment'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'enrollment_no'
 
     enrollment_no = fields.Char(string='Enrollment Number')
@@ -45,3 +47,15 @@ class StudentEnrollment(models.Model):
                 self.enrollment_no =  f'{pref}{class_code}{format(int(last_enrollment.enrollment_no[4:])+1, "04d")}'
             else:
                 self.enrollment_no =  f'{pref}{class_code}{format(1, "04d")}'
+
+    @api.onchange('student_id', 'status')
+    def _check_active_teacher(self):
+        if self.student_id and self.status == 'active':
+            duplicate = self.search([
+                ('id', '!=', self.id),
+                ('student_id', '=', self.student_id.id),
+                ('status', '=', 'active')
+            ])
+
+            if duplicate:
+                raise ValidationError(f"{self.student_id.name} is already enrolled")

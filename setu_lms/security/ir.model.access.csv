@@ -8,3 +8,4 @@ access_class_term_user,class_term,model_class_term,,1,1,1,1
 access_class_teacher_assignment_user,class_teacher_assignment,model_class_teacher_assignment,,1,1,1,1
 access_class_subject_teacher_user,class_subject_teacher,model_class_subject_teacher,,1,1,1,1
 access_student_enrollment_user,student_enrollment,model_student_enrollment,,1,1,1,1
+access_class_subject_user,class_subject,model_class_subject,,1,1,1,1

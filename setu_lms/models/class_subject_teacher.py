@@ -3,16 +3,11 @@ from odoo import models, fields, api
 
 class ClassSubjectTeacher(models.Model):
     _name = 'class.subject.teacher'
+    _rec_name = 'class_subject_id'
 
-    class_term_id = fields.Many2one(
-        comodel_name='class.term',
+    class_subject_id = fields.Many2one(
+        comodel_name='class.subject',
         string="Class",
-        required=True
-    )
-
-    subject_id = fields.Many2one(
-        comodel_name='subject',
-        string='Subject',
         required=True
     )
 
@@ -37,8 +32,9 @@ class ClassSubjectTeacher(models.Model):
         required=True
     )
 
-    @api.onchange('class_term_id')
+    @api.onchange('class_subject_id')
     def _change_dates(self):
-        if self.class_term_id:
-            self.start_date = self.class_term_id.term_id.start_date
-            self.end_date = self.class_term_id.term_id.end_date
+        print(self.class_subject_id.class_term_id)
+        if self.class_subject_id.class_term_id:
+            self.start_date = self.class_subject_id.class_term_id.term_id.start_date
+            self.end_date = self.class_subject_id.class_term_id.term_id.end_date

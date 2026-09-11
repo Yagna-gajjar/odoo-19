@@ -26,10 +26,26 @@
                     </group>
                     <group>
                         <field name="class_term_ids">
-                            <list editable="bottom">
+                            <list>
                                 <field name="class_id"/>
                                 <field name="current_class_teacher_id"/>
                             </list>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <field name="class_id"/>
+                                        <field name="current_class_teacher_id"/>
+                                    </group>
+
+                                    <group string="Subjects">
+                                        <field name="class_subject_ids">
+                                            <list editable="bottom">
+                                                <field name="subject_id"/>
+                                            </list>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
                         </field>
                     </group>
                 </sheet>

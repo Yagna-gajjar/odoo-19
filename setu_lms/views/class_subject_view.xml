@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="class_subject_list_view" model="ir.ui.view">
+        <field name="name">class.subject.list.view</field>
+        <field name="model">class.subject</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="class_term_id"/>
+                <field name="subject_id"/>
+                <field name="class_subject_teacher_ids"/>
+            </list>
+        </field>
+    </record>
+    <record id="class_subject_form_view" model="ir.ui.view">
+        <field name="name">class.subject.form.view</field>
+        <field name="model">class.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="class_term_id"/>
+                        <field name="subject_id"/>
+                    </group>
+                    <group>
+                        <field name="class_subject_teacher_ids">
+                            <list>
+                                <field name="teacher_id"/>
+                            </list>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <field name="teacher_id"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="class_subject_action" model="ir.actions.act_window">
+        <field name="name">Class Subject</field>
+        <field name="res_model">class.subject</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

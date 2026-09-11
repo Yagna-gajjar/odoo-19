@@ -6,6 +6,7 @@ class ClassTeacherAssignment(models.Model):
     _name = 'class.teacher.assignment'
     _order = 'start_date desc'
     _rec_name = 'class_term_id'
+    _inherit = ['mail.thread']
 
     class_term_id = fields.Many2one(
         comodel_name='class.term',
@@ -23,7 +24,6 @@ class ClassTeacherAssignment(models.Model):
     end_date = fields.Datetime(
         string='End Date'
     )
-
     status = fields.Selection(
         [
             ('active', 'Active'),

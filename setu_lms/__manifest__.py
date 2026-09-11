@@ -13,6 +13,7 @@
         'views/class_teacher_assignment_view.xml',
         'views/class_subject_teacher_view.xml',
         'views/student_enrollment_view.xml',
+        'views/class_subject_view.xml',
         'views/main_menu.xml'
     ]
 }

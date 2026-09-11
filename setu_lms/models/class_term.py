@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class ClassTerm(models.Model):
     _name = 'class.term'
     _rec_name = 'display_name'
+    _inherit = ['mail.thread']
 
     class_id = fields.Many2one(
         comodel_name='school.class',
@@ -20,11 +21,6 @@ class ClassTerm(models.Model):
         string='Current Class Teacher'
     )
 
-    subject_ids = fields.Many2many(
-        comodel_name='subject',
-        string='Subjects'
-    )
-
     display_name = fields.Char(
         compute='_compute_display_name',
         store=True
@@ -35,6 +31,23 @@ class ClassTerm(models.Model):
         inverse_name='class_term_id',
         string='Class Teacher Assignments'
     )
+
+    class_subject_ids = fields.One2many(
+        comodel_name='class.subject',
+        inverse_name='class_term_id',
+        string='Class Subjects'
+    )
+
+    status = fields.Selection(
+        [
+            ('active', 'Active'),
+            ('inactive', 'Inactive'),
+        ],
+        string='Status',
+        default='active',
+        required=True
+    )
+
 
     @api.depends('class_id', 'term_id')
     def _compute_display_name(self):
