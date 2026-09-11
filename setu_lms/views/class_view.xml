@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="school_class_search_view" model="ir.ui.view">
+        <field name="name">school.class.search.view</field>
+        <field name="model">school.class</field>
+        <field name="arch" type="xml">
+            <search string="Search Classes">
+
+                <field name="name"/>
+                <field name="code"/>
+                <filter
+                        name="active"
+                        string="Active"
+                        domain="[('active', '=', True)]"
+                />
+
+                <filter
+                        name="inactive"
+                        string="Inactive"
+                        domain="[('active', '=', False)]"
+                />
+
+            </search>
+        </field>
+    </record>
     <record id="school_class_list_view" model="ir.ui.view">
         <field name="name">school.class.list.view</field>
         <field name="model">school.class</field>
@@ -7,24 +30,8 @@
             <list>
                 <field name="name"/>
                 <field name="code"/>
-                <field name="status"/>
+                <field name="active"/>
             </list>
-        </field>
-    </record>
-    <record id="school_class_form_view" model="ir.ui.view">
-        <field name="name">school.class.form.view</field>
-        <field name="model">school.class</field>
-        <field name="arch" type="xml">
-            <form string="Class Form">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="status"/>
-                    </group>
-                </sheet>
-                <chatter/>
-            </form>
         </field>
     </record>
     <record id="class_action" model="ir.actions.act_window">

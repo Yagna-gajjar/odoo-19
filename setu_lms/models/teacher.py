@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class Teacher(models.Model):
     _name = 'teacher'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread','mail.activity.mixin']
 
     name = fields.Char(string='Teacher Name', required=True)
     employee_no = fields.Integer(string='Employee NO', required=True)

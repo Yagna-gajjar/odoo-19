@@ -38,16 +38,7 @@ class ClassTerm(models.Model):
         string='Class Subjects'
     )
 
-    status = fields.Selection(
-        [
-            ('active', 'Active'),
-            ('inactive', 'Inactive'),
-        ],
-        string='Status',
-        default='active',
-        required=True
-    )
-
+    active = fields.Boolean(string='Active', default=True)
 
     @api.depends('class_id', 'term_id')
     def _compute_display_name(self):

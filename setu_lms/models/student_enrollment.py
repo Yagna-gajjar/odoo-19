@@ -22,15 +22,7 @@ class StudentEnrollment(models.Model):
 
     start_date = fields.Datetime(string='Start Date', required=True)
     end_date = fields.Datetime(string='End Date', required=True)
-    status = fields.Selection(
-        [
-            ('active', 'Active'),
-            ('inactive', 'Inactive'),
-        ],
-        string='Status',
-        default='active',
-        required=True
-    )
+    active = fields.Boolean(string='Active', default=True)
     @api.onchange('class_term_id')
     def _create_enrollment(self):
         if self.class_term_id.term_id and self.class_term_id.class_id:
@@ -48,13 +40,13 @@ class StudentEnrollment(models.Model):
             else:
                 self.enrollment_no =  f'{pref}{class_code}{format(1, "04d")}'
 
-    @api.onchange('student_id', 'status')
+    @api.onchange('student_id', 'active')
     def _check_active_teacher(self):
-        if self.student_id and self.status == 'active':
+        if self.student_id and self.active:
             duplicate = self.search([
                 ('id', '!=', self.id),
                 ('student_id', '=', self.student_id.id),
-                ('status', '=', 'active')
+                ('active', '=', True)
             ])
 
             if duplicate:

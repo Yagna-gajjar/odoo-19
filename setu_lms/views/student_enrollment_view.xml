@@ -10,7 +10,7 @@
                 <field name="student_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="status"/>
+                <field name="active"/>
             </list>
         </field>
     </record>
@@ -26,7 +26,7 @@
                     <field name="student_id"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
-                    <field name="status"/>
+                    <field name="active"/>
                 </group>
                 </sheet>
                 <chatter/>

@@ -22,15 +22,7 @@ class ClassSubjectTeacher(models.Model):
         required=True)
     end_date = fields.Datetime(string='End Date')
 
-    status = fields.Selection(
-        [
-            ('active', 'Active'),
-            ('inactive', 'Inactive'),
-        ],
-        string='Status',
-        default='active',
-        required=True
-    )
+    active = fields.Boolean(string='Active', default=True)
 
     @api.onchange('class_subject_id')
     def _change_dates(self):

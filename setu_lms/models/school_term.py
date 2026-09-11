@@ -11,14 +11,7 @@ class SchoolTerm(models.Model):
     name = fields.Char(string='Name', required=True, tracking=True)
     start_date = fields.Datetime(string="Start Date", required=True, tracking=True)
     end_date = fields.Datetime(string="End Date", required=True, tracking=True)
-    status = fields.Selection(
-        string="Status",
-        selection=[
-            ('active', 'Active'),
-            ('inactive', 'Inactive')
-        ],
-        required=True, tracking=True
-    )
+    active = fields.Boolean(string='Active', default=True)
 
     class_term_ids = fields.One2many(
         comodel_name='class.term',
@@ -45,7 +38,7 @@ class SchoolTerm(models.Model):
                         [
                             ('class_term_id', '=', class_term_id),
                             ('teacher_id', '!=', False),
-                            ('status', '=', 'active')
+                            ('active', '=', True)
                         ],
                         limit=1
                     )
@@ -54,7 +47,7 @@ class SchoolTerm(models.Model):
                     if active_class_teacher.ids:
                         active_class_teacher.write({
                             'end_date': datetime.datetime.now(),
-                            'status': 'inactive'
+                            'active': False
                         })
                         new_start_date = datetime.datetime.now()
 
@@ -65,12 +58,12 @@ class SchoolTerm(models.Model):
                         'end_date': class_term.term_id.end_date,
                     })
 
-        if 'status' in vals:
+        if 'active' in vals:
             class_term = self.env['class.term'].search(
                 [('term_id', 'in', self.ids)]
             )
             class_term.write({
-                'status': vals['status']
+                'active': vals['active']
             })
 
             class_teacher_records = self.env[
@@ -79,21 +72,21 @@ class SchoolTerm(models.Model):
                 domain=[('class_term_id.term_id', 'in', self.ids)]
             )
             class_teacher_records.write({
-                'status': vals['status']
+                'active': vals['active']
             })
 
             student_enrolled = self.env['student.enrollment'].search(
                 [('class_term_id.term_id', 'in', self.ids)]
             )
             student_enrolled.write({
-                'status': vals['status']
+                'active': vals['active']
             })
 
         return result
     def create(self, vals_list):
         terms = super().create(vals_list)
         classes = self.env['school.class'].search([
-            ('status', '=', 'active')
+            ('active', '=', True)
         ])
 
         class_term_vals = []

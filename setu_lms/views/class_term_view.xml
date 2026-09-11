@@ -10,7 +10,7 @@
                 <field name="term_id"/>
                 <field name="current_class_teacher_id"/>
                 <field name="class_subject_ids"/>
-                <field name="status"/>
+                <field name="active"/>
             </list>
         </field>
     </record>
@@ -34,7 +34,7 @@
                                 </group>
                             </form>
                         </field>
-                        <field name="status"/>
+                        <field name="active"/>
                     </group>
                 </sheet>
                 <chatter/>

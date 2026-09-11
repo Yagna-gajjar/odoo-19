@@ -24,28 +24,21 @@ class ClassTeacherAssignment(models.Model):
     end_date = fields.Datetime(
         string='End Date'
     )
-    status = fields.Selection(
-        [
-            ('active', 'Active'),
-            ('inactive', 'Inactive'),
-        ],
-        string='Status',
-        default='active',
-        required=True
-    )
+
+    active = fields.Boolean(string='Active', default=True)
 
     @api.onchange('class_term_id')
     def _change_dates(self):
         self.start_date = self.class_term_id.term_id.start_date
         self.end_date = self.class_term_id.term_id.end_date
 
-    @api.onchange('teacher_id', 'status')
+    @api.onchange('teacher_id', 'active')
     def _check_active_teacher(self):
-        if self.teacher_id and self.status == 'active':
+        if self.teacher_id and self.active:
             duplicate = self.search([
                 ('id', '!=', self.id),
                 ('teacher_id', '=', self.teacher_id.id),
-                ('status', '=', 'active')
+                ('active', '=', True)
             ])
 
             if duplicate:

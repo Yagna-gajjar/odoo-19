@@ -7,7 +7,6 @@
             <list>
                 <field name="class_term_id"/>
                 <field name="subject_id"/>
-                <field name="class_subject_teacher_ids"/>
             </list>
         </field>
     </record>
@@ -29,7 +28,10 @@
                             <form>
                                 <sheet>
                                     <group>
+                                        <field name="class_subject_id" />
                                         <field name="teacher_id"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
                                     </group>
                                 </sheet>
                             </form>
