@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="transaction_list_view" model="ir.ui.view">
+        <field name="name">transaction.list.view</field>
+        <field name="model">transaction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="title"/>
+                <field name="transaction_date"/>
+                <field name="account_id"/>
+                <field name="category_id"/>
+                <field name="amount"/>
+                <field name="remark"/>
+                <field name="remark"/>
+            </list>
+        </field>
+    </record>
+    <record id="transaction_form_view" model="ir.ui.view">
+        <field name="name">transaction.form.view</field>
+        <field name="model">transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="title"/>
+                    <field name="transaction_date"/>
+                    <field name="account_id"/>
+                    <field name="category_id"/>
+                    <field name="amount"/>
+                    <field name="remark"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="transaction_action" model="ir.actions.act_window">
+        <field name="name">transaction</field>
+        <field name="res_model">transaction</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

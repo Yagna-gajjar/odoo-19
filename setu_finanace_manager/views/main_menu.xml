@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+            id="menu_root"
+            name="Finance Manager"
+            sequence="10"
+    />
+    <menuitem
+            id="menu_accounts"
+            name="Account"
+            parent="menu_root"
+            action="accounts_action"
+            sequence="1"
+    />
+    <menuitem
+            id="menu_category"
+            name="Category"
+            parent="menu_root"
+            action="category_action"
+            sequence="2"
+    />
+    <menuitem
+            id="menu_transaction"
+            name="Transaction"
+            parent="menu_root"
+            action="transaction_action"
+            sequence="3"
+    />
+</odoo>
