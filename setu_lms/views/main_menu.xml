@@ -1,81 +1,82 @@
 <odoo>
     <menuitem
         id="lms_root_menu"
-        name="LMS"
+        name="School"
         sequence="50"
     />
+
     <menuitem
-        id="menu_class_term"
-        name="Class and Term"
+        id="menu_academic_setup"
+        name="Academic Setup"
         parent="lms_root_menu"
         sequence="10"
     />
     <menuitem
-        id="menu_term"
-        name="Term"
-        parent="menu_class_term"
-        action="term_action"
+        id="menu_academic_year"
+        name="Academic Years"
+        parent="menu_academic_setup"
+        action="academic_year_action"
         sequence="11"
-    />
-    <menuitem
-        id="menu_class_teacher_assignment"
-        name="class teacher assignment"
-        parent="menu_class_term"
-        action="class_teacher_assignment_action"
-        sequence="12"
-    />
-    <menuitem
-        id="menu_class_term_assignment"
-        name="class term assignment"
-        parent="menu_class_term"
-        action="class_term_action"
-        sequence="13"
     />
     <menuitem
         id="menu_class"
         name="Classes"
-        parent="menu_class_term"
+        parent="menu_academic_setup"
         action="class_action"
-        sequence="14"
+        sequence="12"
+    />
+    <menuitem
+        id="menu_subject"
+        name="Subjects"
+        parent="menu_academic_setup"
+        action="subject_action"
+        sequence="13"
     />
 
     <menuitem
-        id="menu_subject"
-        name="Subject"
+        id="menu_classes_this_year"
+        name="Classes"
         parent="lms_root_menu"
         sequence="20"
     />
     <menuitem
-        id="menu_all_subject"
-        name="Subject"
-        parent="menu_subject"
-        action="subject_action"
+        id="menu_class_year"
+        name="Class Overview"
+        parent="menu_classes_this_year"
+        action="class_year_action"
         sequence="21"
     />
     <menuitem
-        id="menu_class_subject"
-        name="Class Term Subject"
-        parent="menu_subject"
-        action="class_subject_action"
+        id="menu_class_teacher_assignment"
+        name="Class Teachers"
+        parent="menu_classes_this_year"
+        action="class_teacher_assignment_action"
         sequence="22"
+    />
+    <menuitem
+        id="menu_class_subject"
+        name="Class Subjects"
+        parent="menu_classes_this_year"
+        action="class_subject_action"
+        sequence="23"
     />
 
     <menuitem
         id="menu_teacher"
-        name="Teacher"
+        name="Teachers"
         parent="lms_root_menu"
         sequence="30"
     />
     <menuitem
         id="menu_all_teacher"
-        name="All Teacher"
+        name="All Teachers"
         parent="menu_teacher"
         action="teacher_action"
         sequence="31"
     />
     <menuitem
         id="menu_teacher_subject_class"
-        name="Teacher Subjects and Class"
+        name="Subject Assignments"
         parent="menu_teacher"
         action="class_subject_teacher_action"
         sequence="32"
@@ -83,22 +84,36 @@
 
     <menuitem
         id="menu_student"
-        name="Student"
+        name="Students"
         parent="lms_root_menu"
         sequence="40"
     />
     <menuitem
         id="menu_all_student"
-        name="Student"
+        name="All Students"
         parent="menu_student"
         action="student_action"
         sequence="41"
     />
     <menuitem
         id="menu_student_enrollment"
-        name="Student Enrollment"
+        name="Enrollment"
         parent="menu_student"
         action="student_enrollment_action"
         sequence="42"
+    />
+
+    <menuitem
+        id="menu_attendance"
+        name="Attendance"
+        parent="lms_root_menu"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_student_attendance"
+        name="Student Attendance"
+        parent="menu_attendance"
+        action="student_attendance_action"
+        sequence="51"
     />
 </odoo>

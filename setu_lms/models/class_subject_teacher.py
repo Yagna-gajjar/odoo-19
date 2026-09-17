@@ -26,7 +26,6 @@ class ClassSubjectTeacher(models.Model):
 
     @api.onchange('class_subject_id')
     def _change_dates(self):
-        print(self.class_subject_id.class_term_id)
-        if self.class_subject_id.class_term_id:
-            self.start_date = self.class_subject_id.class_term_id.term_id.start_date
-            self.end_date = self.class_subject_id.class_term_id.term_id.end_date
+        if self.class_subject_id.class_year_id:
+            self.start_date = self.class_subject_id.class_year_id.year_id.start_date
+            self.end_date = self.class_subject_id.class_year_id.year_id.end_date

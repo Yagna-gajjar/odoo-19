@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="enrollment_no"/>
-                <field name="class_term_id"/>
+                <field name="class_year_id"/>
                 <field name="student_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
@@ -22,7 +22,7 @@
                 <sheet>
                 <group>
                     <field name="enrollment_no"/>
-                    <field name="class_term_id"/>
+                    <field name="class_year_id"/>
                     <field name="student_id"/>
                     <field name="start_date"/>
                     <field name="end_date"/>

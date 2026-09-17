@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="class_term_list_view" model="ir.ui.view">
-        <field name="name">class.term.list.view</field>
-        <field name="model">class.term</field>
+    <record id="class_year_list_view" model="ir.ui.view">
+        <field name="name">class.year.list.view</field>
+        <field name="model">class.year</field>
         <field name="arch" type="xml">
             <list>
                 <field name="display_name"/>
                 <field name="class_id"/>
-                <field name="term_id"/>
+                <field name="year_id"/>
                 <field name="current_class_teacher_id"/>
                 <field name="class_subject_ids"/>
                 <field name="active"/>
             </list>
         </field>
     </record>
-    <record id="class_term_form_view" model="ir.ui.view">
-        <field name="name">class.term.form.view</field>
-        <field name="model">class.term</field>
+    <record id="class_year_form_view" model="ir.ui.view">
+        <field name="name">class.year.form.view</field>
+        <field name="model">class.year</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="%(class_subject_add_wizard_action)d" type="action" string="Add Subjects"
+                            class="btn-primary" context="{'default_class_year_id': id}"/>
+                </header>
+                <header>
+                    <button name="action_generate_todays_attendance" type="object" string="Take Today's Attendance"
+                            class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="class_id"/>
-                        <field name="term_id"/>
+                        <field name="year_id"/>
                         <field name="current_class_teacher_id"/>
                         <field name="class_subject_ids">
                             <list>
@@ -41,9 +49,9 @@
             </form>
         </field>
     </record>
-    <record id="class_term_action" model="ir.actions.act_window">
-        <field name="name">Class Term Assignment</field>
-        <field name="res_model">class.term</field>
+    <record id="class_year_action" model="ir.actions.act_window">
+        <field name="name">Class year Assignment</field>
+        <field name="res_model">class.year</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>

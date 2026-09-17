@@ -3,9 +3,11 @@ access_teacher_user,teacher,model_teacher,,1,1,1,1
 access_subject_user,subject,model_subject,,1,1,1,1
 access_student_user,student,model_student,,1,1,1,1
 access_school_class_user,school_class,model_school_class,,1,1,1,1
-access_school_term_user,school_term,model_school_term,,1,1,1,1
-access_class_term_user,class_term,model_class_term,,1,1,1,1
+access_academic_year_user,academic_year,model_academic_year,,1,1,1,1
+access_class_year_user,class_year,model_class_year,,1,1,1,1
 access_class_teacher_assignment_user,class_teacher_assignment,model_class_teacher_assignment,,1,1,1,1
 access_class_subject_teacher_user,class_subject_teacher,model_class_subject_teacher,,1,1,1,1
 access_student_enrollment_user,student_enrollment,model_student_enrollment,,1,1,1,1
 access_class_subject_user,class_subject,model_class_subject,,1,1,1,1
+access_student_attendance_user,student_attendance,model_student_attendance,,1,1,1,1
+access_class_subject_add_wizard,class.subject.add.wizard,model_class_subject_add_wizard,base.group_user,1,1,1,1

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="school_term_list_view" model="ir.ui.view">
-        <field name="name">school.term.list.view</field>
-        <field name="model">school.term</field>
+    <record id="academic_year_list_view" model="ir.ui.view">
+        <field name="name">academic.year.list.view</field>
+        <field name="model">academic.year</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
@@ -12,11 +12,11 @@
             </list>
         </field>
     </record>
-    <record id="school_term_form_view" model="ir.ui.view">
-        <field name="name">school.term.form.view</field>
-        <field name="model">school.term</field>
+    <record id="academic_year_form_view" model="ir.ui.view">
+        <field name="name">academic.year.form.view</field>
+        <field name="model">academic.year</field>
         <field name="arch" type="xml">
-            <form string="Term">
+            <form string="Year">
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -25,7 +25,7 @@
                         <field name="active"/>
                     </group>
                     <group>
-                        <field name="class_term_ids">
+                        <field name="class_year_ids">
                             <list>
                                 <field name="class_id"/>
                                 <field name="current_class_teacher_id"/>
@@ -53,9 +53,9 @@
             </form>
         </field>
     </record>
-    <record id="term_action" model="ir.actions.act_window">
-        <field name="name">Term</field>
-        <field name="res_model">school.term</field>
+    <record id="academic_year_action" model="ir.actions.act_window">
+        <field name="name">Academic Year</field>
+        <field name="res_model">academic.year</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>

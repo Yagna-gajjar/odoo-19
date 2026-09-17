@@ -9,8 +9,8 @@
                 <field name="transaction_date"/>
                 <field name="account_id"/>
                 <field name="category_id"/>
-                <field name="amount"/>
-                <field name="remark"/>
+                <field name="amount" class="finance-amount"/>
+<!--                <field name="amount" decoration-danger="category_type == 'expense'" decoration-success="category_type == 'income'"/>-->
                 <field name="remark"/>
             </list>
         </field>
@@ -25,14 +25,14 @@
                     <field name="transaction_date"/>
                     <field name="account_id"/>
                     <field name="category_id"/>
-                    <field name="amount"/>
+                    <field name="amount" />
                     <field name="remark"/>
                 </group>
             </form>
         </field>
     </record>
     <record id="transaction_action" model="ir.actions.act_window">
-        <field name="name">transaction</field>
+        <field name="name">Transaction</field>
         <field name="res_model">transaction</field>
         <field name="view_mode">list,form</field>
     </record>

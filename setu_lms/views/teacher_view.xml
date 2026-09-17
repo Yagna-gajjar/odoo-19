@@ -7,7 +7,7 @@
             <list>
                 <field name="name"/>
                 <field name="employee_no"/>
-                <field name="class_term_id"/>
+                <field name="class_year_id"/>
                 <field name="email"/>
                 <field name="phone"/>
             </list>
@@ -27,7 +27,7 @@
                 </group>
                     <notebook>
                         <page string="Class Teacher" name="class_teacher">
-                            <field name="class_term_id"/>
+                            <field name="class_year_id"/>
                         </page>
                         <page string="Class Subjects" name="class_subject">
                             <field name="class_subject_id"/>

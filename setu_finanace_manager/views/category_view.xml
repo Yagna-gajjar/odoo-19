@@ -25,7 +25,7 @@
         </field>
     </record>
     <record id="category_action" model="ir.actions.act_window">
-        <field name="name">category</field>
+        <field name="name">Category</field>
         <field name="res_model">category</field>
         <field name="view_mode">list,form</field>
     </record>

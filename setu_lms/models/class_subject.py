@@ -5,9 +5,9 @@ class ClassSubject(models.Model):
     _name = 'class.subject'
     _rec_name = 'display_name'
 
-    class_term_id = fields.Many2one(
-        comodel_name='class.term',
-        string='Class Term',
+    class_year_id = fields.Many2one(
+        comodel_name='class.year',
+        string='Class Year',
         required=True
     )
 
@@ -29,7 +29,7 @@ class ClassSubject(models.Model):
         store=True
     )
 
-    @api.depends('class_term_id', 'subject_id')
+    @api.depends('class_year_id', 'subject_id')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = f"{record.class_term_id.display_name} / {record.subject_id.name}"
+            record.display_name = f"{record.class_year_id.display_name} / {record.subject_id.name}"

@@ -5,7 +5,7 @@
         <field name="model">class.teacher.assignment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="class_term_id"/>
+                <field name="class_year_id"/>
                 <field name="teacher_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
@@ -20,7 +20,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="class_term_id"/>
+                        <field name="class_year_id"/>
                         <field name="teacher_id"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
