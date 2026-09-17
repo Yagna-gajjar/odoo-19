@@ -5,6 +5,7 @@
     "data": [
         'security/ir.model.access.csv',
         'views/class_subject_add_wizard_view.xml',
+        'views/teacher_subject_add_wizard_view.xml',
         'views/student_attendance_view.xml',
         'views/academic_year_view.xml',
         'views/class_view.xml',

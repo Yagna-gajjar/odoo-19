@@ -19,13 +19,10 @@ class ClassSubjectTeacher(models.Model):
 
     start_date = fields.Datetime(
         string='Start Date',
-        required=True)
-    end_date = fields.Datetime(string='End Date')
+        required=True
+    )
+    end_date = fields.Datetime(
+        string='End Date'
+    )
 
     active = fields.Boolean(string='Active', default=True)
-
-    @api.onchange('class_subject_id')
-    def _change_dates(self):
-        if self.class_subject_id.class_year_id:
-            self.start_date = self.class_subject_id.class_year_id.year_id.start_date
-            self.end_date = self.class_subject_id.class_year_id.year_id.end_date

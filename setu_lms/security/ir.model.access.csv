@@ -11,3 +11,4 @@ access_student_enrollment_user,student_enrollment,model_student_enrollment,,1,1,
 access_class_subject_user,class_subject,model_class_subject,,1,1,1,1
 access_student_attendance_user,student_attendance,model_student_attendance,,1,1,1,1
 access_class_subject_add_wizard,class.subject.add.wizard,model_class_subject_add_wizard,base.group_user,1,1,1,1
+access_teacher_subject_add_wizard,teacher.subject.add.wizard,model_teacher_subject_add_wizard,base.group_user,1,1,1,1

@@ -11,7 +11,7 @@ class Teacher(models.Model):
     email = fields.Char(string='Email', required=True)
     phone = fields.Char(string='Phone', required=True)
 
-    class_year_id = fields.One2many(
+    class_teacher_id = fields.One2many(
         comodel_name='class.teacher.assignment',
         string='Class Teacher',
         inverse_name='teacher_id',

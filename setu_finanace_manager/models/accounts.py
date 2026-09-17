@@ -5,18 +5,21 @@ class Accounts(models.Model):
     _name = 'accounts'
     _rec_name = 'name'
 
-    name = fields.Char(string='Account Name')
-    account_type = fields.Char(string='Account Type')
-    opening_balance = fields.Float(string='Opening Balance')
+    name = fields.Char(string='Account Name', required=True)
+    account_type = fields.Char(string='Account Type', required=True)
+    opening_balance = fields.Float(string='Opening Balance', required=True)
     current_balance = fields.Float(string='Current Balance', compute='_compute_current_balance')
-    active = fields.Boolean(string='Active')
+    active = fields.Boolean(string='Active', required=True)
     transaction_ids = fields.One2many(string='Transaction', comodel_name='transaction', inverse_name='account_id')
 
-    @api.onchange("opening_balance")
-    def _check_opening_balance(self):
-        print("_check_opening_balance called")
-        if float(self.opening_balance) < 1000:
-            raise ValidationError("Opening Balance needs to be more than 1000")
+    _account_name_unique = models.Constraint(
+        'unique(name)',
+        'You cannot repeat account name'
+    )
+    _check_opening_balance = models.Constraint(
+        'CHECK(opening_balance >= 1000)',
+        'Minimum balance should be 1000'
+    )
 
     @api.depends("opening_balance", "transaction_ids")
     def _compute_current_balance(self):

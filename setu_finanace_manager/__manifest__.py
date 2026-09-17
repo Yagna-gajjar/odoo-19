@@ -8,11 +8,5 @@
         'views/accounts_view.xml',
         'views/category_view.xml',
         'views/transaction_view.xml'
-    ],
-    "assets": {
-        "web.assets_backend": [
-            "setu_finanace_manager/static/src/scss/transaction.scss",
-            "setu_finanace_manager/static/src/js/transaction.js"
-        ],
-    }
+    ]
 }

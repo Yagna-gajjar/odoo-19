@@ -7,7 +7,7 @@
             <list>
                 <field name="name"/>
                 <field name="employee_no"/>
-                <field name="class_year_id"/>
+                <field name="class_teacher_id"/>
                 <field name="email"/>
                 <field name="phone"/>
             </list>
@@ -18,23 +18,31 @@
         <field name="model">teacher</field>
         <field name="arch" type="xml">
             <form string="Teacher Form">
+                <header>
+                    <button name="%(teacher_subject_add_wizard_action)d" type="action" string="Add Class Subjects"
+                            class="btn-primary" context="{'default_teacher_id': id}"/>
+                </header>
                 <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="employee_no"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                </group>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_no"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
                     <notebook>
-                        <page string="Class Teacher" name="class_teacher">
-                            <field name="class_year_id"/>
+                        <page string="Class Teacher">
+                            <field name="class_teacher_id" readonly="1">
+                                <list>
+                                    <field name="class_year_id"/>
+                                </list>
+                            </field>
                         </page>
                         <page string="Class Subjects" name="class_subject">
-                            <field name="class_subject_id"/>
+                            <field name="class_subject_id" readonly="1"/>
                         </page>
                     </notebook>
                 </sheet>
-                <chatter />
+                <chatter/>
             </form>
         </field>
     </record>
