@@ -27,7 +27,6 @@
                         <field name="phone"/>
                     </group>
                 </sheet>
-                    <chatter/>
             </form>
         </field>
     </record>

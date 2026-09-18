@@ -12,3 +12,8 @@ access_class_subject_user,class_subject,model_class_subject,,1,1,1,1
 access_student_attendance_user,student_attendance,model_student_attendance,,1,1,1,1
 access_class_subject_add_wizard,class.subject.add.wizard,model_class_subject_add_wizard,base.group_user,1,1,1,1
 access_teacher_subject_add_wizard,teacher.subject.add.wizard,model_teacher_subject_add_wizard,base.group_user,1,1,1,1
+access_exam,exam,model_exam,base.group_user,1,1,1,1
+access_exam_subject,exam.subject,model_exam_subject,base.group_user,1,1,1,1
+access_exam_result,exam.result,model_exam_result,base.group_user,1,1,1,1
+access_attendance_wizard,attendance.wizard,model_attendance_wizard,base.group_user,1,1,1,1
+access_attendance_student_line_wizard,attendance.student.line.wizard,model_attendance_student_line_wizard,base.group_user,1,1,1,1

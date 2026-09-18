@@ -9,5 +9,6 @@ from . import class_teacher_assignment
 from . import class_subject_teacher
 from . import student_enrollment
 from . import student_attendance
-from . import class_subject_add_wizard
-from . import teacher_subject_add_wizard
+from . import exam
+from . import exam_subject
+from . import exam_result

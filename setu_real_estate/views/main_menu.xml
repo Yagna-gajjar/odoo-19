@@ -1,0 +1,20 @@
+<odoo>
+    <menuitem
+            id="lms_root_menu"
+            name="Real Estate"
+            sequence="10"
+    />
+    <menuitem
+            id="menu_estate_property"
+            name="Advertisement"
+            parent="lms_root_menu"
+            action="estate_property_action"
+            sequence="11"
+    />
+    <menuitem
+            id="menu_settings"
+            name="Settings"
+            parent="lms_root_menu"
+            sequence="20"
+    />
+</odoo>

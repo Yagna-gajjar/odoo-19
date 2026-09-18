@@ -1,119 +1,146 @@
 <odoo>
     <menuitem
-        id="lms_root_menu"
-        name="School"
-        sequence="50"
+            id="lms_root_menu"
+            name="School"
+            sequence="50"
     />
 
     <menuitem
-        id="menu_academic_setup"
-        name="Academic Setup"
-        parent="lms_root_menu"
-        sequence="10"
+            id="menu_academic_setup"
+            name="Academic Setup"
+            parent="lms_root_menu"
+            sequence="10"
     />
     <menuitem
-        id="menu_academic_year"
-        name="Academic Years"
-        parent="menu_academic_setup"
-        action="academic_year_action"
-        sequence="11"
+            id="menu_academic_year"
+            name="Academic Years"
+            parent="menu_academic_setup"
+            action="academic_year_action"
+            sequence="11"
     />
     <menuitem
-        id="menu_class"
-        name="Classes"
-        parent="menu_academic_setup"
-        action="class_action"
-        sequence="12"
+            id="menu_class"
+            name="Classes"
+            parent="menu_academic_setup"
+            action="class_action"
+            sequence="12"
     />
     <menuitem
-        id="menu_subject"
-        name="Subjects"
-        parent="menu_academic_setup"
-        action="subject_action"
-        sequence="13"
-    />
-
-    <menuitem
-        id="menu_classes_this_year"
-        name="Classes"
-        parent="lms_root_menu"
-        sequence="20"
-    />
-    <menuitem
-        id="menu_class_year"
-        name="Class Overview"
-        parent="menu_classes_this_year"
-        action="class_year_action"
-        sequence="21"
-    />
-    <menuitem
-        id="menu_class_teacher_assignment"
-        name="Class Teachers"
-        parent="menu_classes_this_year"
-        action="class_teacher_assignment_action"
-        sequence="22"
-    />
-    <menuitem
-        id="menu_class_subject"
-        name="Class Subjects"
-        parent="menu_classes_this_year"
-        action="class_subject_action"
-        sequence="23"
+            id="menu_subject"
+            name="Subjects"
+            parent="menu_academic_setup"
+            action="subject_action"
+            sequence="13"
     />
 
     <menuitem
-        id="menu_teacher"
-        name="Teachers"
-        parent="lms_root_menu"
-        sequence="30"
+            id="menu_classes_this_year"
+            name="Classes"
+            parent="lms_root_menu"
+            sequence="20"
     />
     <menuitem
-        id="menu_all_teacher"
-        name="All Teachers"
-        parent="menu_teacher"
-        action="teacher_action"
-        sequence="31"
+            id="menu_class_year"
+            name="Class Overview"
+            parent="menu_classes_this_year"
+            action="class_year_action"
+            sequence="21"
     />
     <menuitem
-        id="menu_teacher_subject_class"
-        name="Subject Assignments"
-        parent="menu_teacher"
-        action="class_subject_teacher_action"
-        sequence="32"
-    />
-
-    <menuitem
-        id="menu_student"
-        name="Students"
-        parent="lms_root_menu"
-        sequence="40"
+            id="menu_class_teacher_assignment"
+            name="Class Teachers"
+            parent="menu_classes_this_year"
+            action="class_teacher_assignment_action"
+            sequence="22"
     />
     <menuitem
-        id="menu_all_student"
-        name="All Students"
-        parent="menu_student"
-        action="student_action"
-        sequence="41"
-    />
-    <menuitem
-        id="menu_student_enrollment"
-        name="Enrollment"
-        parent="menu_student"
-        action="student_enrollment_action"
-        sequence="42"
+            id="menu_class_subject"
+            name="Class Subjects"
+            parent="menu_classes_this_year"
+            action="class_subject_action"
+            sequence="23"
     />
 
     <menuitem
-        id="menu_attendance"
-        name="Attendance"
-        parent="lms_root_menu"
-        sequence="50"
+            id="menu_teacher"
+            name="Teachers"
+            parent="lms_root_menu"
+            sequence="30"
     />
     <menuitem
-        id="menu_student_attendance"
-        name="Student Attendance"
-        parent="menu_attendance"
-        action="student_attendance_action"
-        sequence="51"
+            id="menu_all_teacher"
+            name="All Teachers"
+            parent="menu_teacher"
+            action="teacher_action"
+            sequence="31"
+    />
+    <menuitem
+            id="menu_teacher_subject_class"
+            name="Subject Assignments"
+            parent="menu_teacher"
+            action="class_subject_teacher_action"
+            sequence="32"
+    />
+
+    <menuitem
+            id="menu_student"
+            name="Students"
+            parent="lms_root_menu"
+            sequence="40"
+    />
+    <menuitem
+            id="menu_all_student"
+            name="All Students"
+            parent="menu_student"
+            action="student_action"
+            sequence="41"
+    />
+    <menuitem
+            id="menu_student_enrollment"
+            name="Enrollment"
+            parent="menu_student"
+            action="student_enrollment_action"
+            sequence="42"
+    />
+
+    <menuitem
+            id="menu_attendance"
+            name="Attendance"
+            parent="lms_root_menu"
+            sequence="50"
+    />
+    <menuitem
+            id="menu_take_attendance"
+            name="Take Attendance"
+            parent="menu_attendance"
+            action="attendance_wizard_action"
+            sequence="51"
+    />
+    <menuitem
+            id="menu_show_attendance"
+            name="Show Attendance"
+            parent="menu_attendance"
+            action="student_attendance_action"
+            sequence="52"
+    />
+    <menuitem
+            id="menu_exams"
+            name="Exams"
+            parent="lms_root_menu"
+            sequence="60"
+    />
+    <menuitem
+            id="menu_exam"
+            name="Exams"
+            parent="menu_exams"
+            action="exam_action"
+            sequence="61"
+    />
+    <menuitem
+            id="menu_exam_result"
+            name="Results"
+            parent="menu_exams"
+            action="exam_result_action"
+            sequence="62"
     />
 </odoo>

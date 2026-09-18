@@ -4,6 +4,7 @@
     "depends":  ['base', 'mail'],
     "data": [
         'security/ir.model.access.csv',
+        'views/attendance_wizard_view.xml',
         'views/class_subject_add_wizard_view.xml',
         'views/teacher_subject_add_wizard_view.xml',
         'views/student_attendance_view.xml',
@@ -17,6 +18,8 @@
         'views/class_subject_teacher_view.xml',
         'views/student_enrollment_view.xml',
         'views/class_subject_view.xml',
+        'views/exam_view.xml',
+        'views/exam_result_view.xml',
         'views/main_menu.xml'
     ]
 }

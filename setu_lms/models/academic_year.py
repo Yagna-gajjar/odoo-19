@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class AcademicYear(models.Model):
     _name = 'academic.year'
     _inherit = ['mail.thread']
+    _rec_name = 'name'
 
     name = fields.Char(string='Name', required=True, tracking=True)
     start_date = fields.Datetime(string="Start Date", required=True, tracking=True)

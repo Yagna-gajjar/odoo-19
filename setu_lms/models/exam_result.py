@@ -4,11 +4,12 @@ from odoo.exceptions import ValidationError
 
 class ExamResult(models.Model):
     _name = 'exam.result'
-    _description = 'Exam Result'
     _rec_name = 'student_id'
 
     exam_subject_id = fields.Many2one(comodel_name='exam.subject', string='Exam Subject', required=True)
     exam_id = fields.Many2one(related='exam_subject_id.exam_id', store=True, string='Exam')
+    class_year_id = fields.Many2one(related='exam_subject_id.class_subject_id.class_year_id', store=False, string='Exam')
+    subject_id = fields.Many2one(related='exam_subject_id.class_subject_id.subject_id', store=False, string='Exam')
     student_id = fields.Many2one(comodel_name='student', string='Student', required=True)
     marks_obtained = fields.Float(string='Marks Obtained', required=True)
     max_marks = fields.Float(related='exam_subject_id.max_marks', store=True)

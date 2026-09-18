@@ -22,10 +22,13 @@ class Teacher(models.Model):
         inverse_name='teacher_id',
     )
 
-    _sql_constraints = [
-        ('employee_no_unique', 'unique(employee_no)', 'Employee Number must be unique.'),
-        ('email_unique', 'unique(email)', 'A teacher with this email already exists.'),
-    ]
+    _employee_no_unique = models.Constraint(
+        'unique(employee_no)', 'Employee Number must be unique.'
+    )
+    _email_unique = models.Constraint(
+        'unique(email)', 'A teacher with this email already exists.'
+    )
+
 
     @api.model_create_multi
     def create(self, vals_list):

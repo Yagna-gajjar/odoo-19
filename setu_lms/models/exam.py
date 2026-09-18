@@ -27,3 +27,30 @@ class Exam(models.Model):
         for record in self:
             if record.start_date and record.end_date and record.start_date > record.end_date:
                 raise ValidationError("Start Date cannot be after End Date.")
+
+    def action_generate_result_sheets(self):
+        self.ensure_one()
+        enrollments = self.env['student.enrollment'].search([
+            ('class_year_id', '=', self.class_year_id.id),
+            ('active', '=', True),
+        ])
+        Result = self.env['exam.result']
+        for exam_subject in self.exam_subject_ids:
+            for enrollment in enrollments:
+                exists = Result.search([
+                    ('student_id', '=', enrollment.student_id.id),
+                    ('exam_subject_id', '=', exam_subject.id),
+                ], limit=1)
+                if not exists:
+                    Result.create({
+                        'student_id': enrollment.student_id.id,
+                        'exam_subject_id': exam_subject.id,
+                        'marks_obtained': 0,
+                    })
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Results',
+            'res_model': 'exam.result',
+            'view_mode': 'list',
+            'domain': [('exam_id', '=', self.id)],
+        }

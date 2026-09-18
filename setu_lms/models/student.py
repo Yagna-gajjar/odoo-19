@@ -3,7 +3,6 @@ from odoo import models, fields, api
 
 class Student(models.Model):
     _name = 'student'
-    _description = 'Student'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Student Name', required=True)
@@ -15,6 +14,6 @@ class Student(models.Model):
     email = fields.Char(string='Email', required=True)
     phone = fields.Char(string='Phone', required=True)
 
-    _sql_constraints = [
-        ('email_unique', 'unique(email)', 'A student with this email already exists.'),
-    ]
+    _email_unique = models.Constraint(
+        'unique(email)', 'A student with this email already exists.'
+    )
