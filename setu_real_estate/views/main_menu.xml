@@ -17,4 +17,18 @@
             parent="lms_root_menu"
             sequence="20"
     />
+    <menuitem
+            id="menu_property_type"
+            name="Property Type"
+            parent="menu_settings"
+            action="estate_property_type_action"
+            sequence="21"
+    />
+    <menuitem
+            id="menu_property_tag"
+            name="Property Tag"
+            parent="menu_settings"
+            action="estate_property_tag_action"
+            sequence="22"
+    />
 </odoo>

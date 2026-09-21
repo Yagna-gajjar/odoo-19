@@ -23,10 +23,6 @@
                     <button name="%(class_subject_add_wizard_action)d" type="action" string="Add Subjects"
                             class="btn-primary" context="{'default_class_year_id': id}"/>
                 </header>
-                <header>
-                    <button name="action_generate_todays_attendance" type="object" string="Take Today's Attendance"
-                            class="btn-primary"/>
-                </header>
                 <sheet>
                     <group>
                         <field name="class_id"/>
