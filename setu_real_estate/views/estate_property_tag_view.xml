@@ -18,7 +18,7 @@
                 <sheet invisible="id">
                     <group>
                         <field name="name"/>
-                        <field name="color"/>
+                        <field name="color" widget="color_picker"/>
                         <field name="active"/>
                     </group>
                 </sheet>

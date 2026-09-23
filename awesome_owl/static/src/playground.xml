@@ -1,0 +1,68 @@
+<templates>
+
+    <t t-name="awesome_owl.Playground">
+        <div class="d-flex justify-content-center align-items-center vh-100 bg-success bg-opacity-25">
+            <div>
+                <div class="mx-2 d-flex flex-column align-items-center">
+                    <t t-if="!state.startAgain">
+                        <button
+                                class="btn btn-secondary bg-success rounded-3 text-white px-3 py-2 mb-3"
+                                t-on-click="toggleTimer"
+                        >
+                            <t t-if="state.stop">
+                                Stop
+                            </t>
+                            <t t-if="!state.stop">
+                                Start
+                            </t>
+                        </button>
+                        <h3>
+                            Time:
+                            <t t-esc="formattedValue(state.time.h)"/>
+                            :
+                            <t t-esc="formattedValue(state.time.m)"/>
+                            :
+                            <t t-esc="formattedValue(state.time.s)"/>
+                        </h3>
+                    </t>
+
+                    <t t-if="state.startAgain">
+                        <button
+                                class="btn btn-secondary bg-success rounded-3 text-white px-3 py-2 mb-3"
+                                t-on-click="toggleTimer"
+                        >
+                            StartAgain
+                        </button>
+                    </t>
+                </div>
+                <t t-if="!this.state.isWin">
+                    <table>
+                        <tr t-foreach="[0, 1, 2]" t-as="row" t-key="row">
+                            <td
+                                    t-foreach="state.cells.slice(row * 4, row * 4 + 4)"
+                                    t-as="cell"
+                                    t-key="cell.id"
+                                    t-att-id="cell.id"
+                                    t-on-click="handleClick"
+                            >
+                                <img
+                                        t-att-id="cell.pairId"
+                                        t-att-src="cell.image"
+                                        alt="cell.id"
+                                        width="200"
+                                />
+                            </td>
+
+                        </tr>
+                    </table>
+                </t>
+                <t t-if="this.state.isWin">
+                    <h1 class="text-success">
+                        You Win!!
+                    </h1>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

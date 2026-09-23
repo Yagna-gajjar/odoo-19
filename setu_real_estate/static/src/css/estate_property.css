@@ -1,0 +1,30 @@
+.o_kanban_background {
+    padding: 0 !important;
+    border: 0 !important;
+    margin-block: 10px !important;
+    background-color: transparent !important;
+}
+
+.o_kanban_card {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.o_kanban_card.state_offer_received {
+    background-color: rgb(0 128 0 / 0.2);
+}
+
+.o_kanban_card.state_offer_accepted {
+    background-color: rgb(0 128 0 / 0.2);
+    font-weight: bold;
+}
+
+.o_kanban_card.state_sold {
+    background-color: rgb(128 128 128 / 0.2);
+}
+
+.o_kanban_card.state_cancelled {
+    background-color: rgb(139 0 0 / 0.2);
+}

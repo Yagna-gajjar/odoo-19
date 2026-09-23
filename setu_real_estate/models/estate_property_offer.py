@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class EstatePropertyOffer(models.Model):
     _name = 'estate.property.offer'
     _order = "price desc"
+    _rec_name = 'display_name'
 
     price = fields.Float(string='Price', required=True)
 
@@ -44,10 +45,21 @@ class EstatePropertyOffer(models.Model):
         related='property_id.state',
         string='Property State',
     )
+
+    display_name = fields.Char(
+        string='Display Name',
+        compute='_compute_display_name'
+    )
+
     _price_constraint = models.Constraint(
         'CHECK(price >= 0)',
         f'Offer Price must be positive'
     )
+
+    @api.depends('price', 'partner_id')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"{record.partner_id.name} / {record.price}"
 
     @api.depends('validity', 'create_date')
     def _compute_date_deadline(self):
@@ -66,7 +78,6 @@ class EstatePropertyOffer(models.Model):
 
     def action_accept_refuse(self):
         self.ensure_one()
-
         if self.property_id.state in ('sold', 'cancelled'):
             raise ValidationError(
                 "You cannot modify an offer for a sold or cancelled property."
@@ -78,7 +89,7 @@ class EstatePropertyOffer(models.Model):
         if status == 'accept':
             self.status = 'accepted'
             accepted_partner = self.partner_id
-            all_records = self.env['estate.property.offer'].search([('partner_id', 'not in', accepted_partner)])
+            all_records = self.env['estate.property.offer'].search([('partner_id', 'not in', accepted_partner), ('property_id', '=', self.property_id.id)])
             for record in all_records:
                 record.status = 'refused'
             self.property_id.buyer_id = self.partner_id
@@ -87,16 +98,16 @@ class EstatePropertyOffer(models.Model):
 
     @api.model
     def create(self, vals_list):
-        property_id = vals_list['property_id']
-
-        print("Property ID:", property_id)
-
-        max_price = self.env['estate.property.offer'].search(
-            [('property_id', '=', property_id)],
-            order='price desc',
-            limit=1
-        )
-
-        print("Max offer:", max_price)
+        for val in vals_list:
+            property_id = val.get('property_id')
+            max_price_data = self.env['estate.property.offer'].search(
+                [('property_id', '=', property_id)],
+                order='price desc',
+                limit=1
+            )
+            new_price = val.get('price')
+            max_price = max_price_data.price
+            if max_price > new_price:
+                raise ValidationError(f"min price is {max_price}")
 
         return super().create(vals_list)

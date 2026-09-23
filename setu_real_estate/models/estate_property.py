@@ -6,6 +6,7 @@ from odoo.tools import float_compare
 class EstateProperty(models.Model):
     _name = 'estate.property'
     _order = "id desc"
+    _rec_name =  'name'
 
     name = fields.Char(string='Title', required=True)
     description = fields.Text(string='Description')
@@ -28,7 +29,7 @@ class EstateProperty(models.Model):
     ])
     property_type_id = fields.Many2one(string='Property Type', comodel_name='estate.property.type')
     property_tag = fields.Many2many(string='Property Tag', comodel_name='estate.property.tag')
-    salesman_id = fields.Many2one(comodel_name="res.partner", string="Salesman")
+    user_id = fields.Many2one(comodel_name="res.users", string="Salesman")
     buyer_id = fields.Many2one(comodel_name="res.partner", string="Buyer")
     offer_ids = fields.One2many(comodel_name="estate.property.offer", inverse_name="property_id", string="Offers")
     best_offer = fields.Float(string='Best Offer', compute='_compute_best_offer')
@@ -40,14 +41,22 @@ class EstateProperty(models.Model):
         ('sold', 'Sold'),
         ('cancelled', 'Cancelled')
     ], default='new', store=True, compute='_compute_property_state')
+
+    offer_count = fields.Integer(string='Offer Count', compute='_compute_offer_count')
+
     _expected_price_constraint = models.Constraint(
-        'CHECK(expected_price >= 0)',
+        'CHECK(expected_price > 0)',
         'expected price must be positive'
     )
     _selling_price_constraint = models.Constraint(
-        'CHECK(selling_price >= 0)',
+        'CHECK(selling_price > 0)',
         'selling price must be positive'
     )
+
+    @api.depends('offer_ids')
+    def _compute_offer_count(self):
+        for record in self:
+            record.offer_count = len(record.offer_ids)
 
     @api.depends('garden_area', 'living_area')
     def _compute_total_area(self):
@@ -87,23 +96,19 @@ class EstateProperty(models.Model):
                 else:
                     record.state = 'new'
 
-    def change_property_state(self):
+    def action_sold(self):
         self.ensure_one()
+        if self.state == 'cancelled':
+            raise ValidationError('Cancelled Property cannot be sold')
+        else:
+            self.state = 'sold'
 
-        state = self.env.context.get('state')
-
-        if state == 'cancel':
-            if self.state == 'sold':
-                raise ValidationError('Sold Property cannot be cancel')
-            else:
-                self.state = 'cancelled'
-        elif state == 'sold':
-            print(self.state)
-            print(self.state == 'cancelled')
-            if self.state == 'cancelled':
-                raise ValidationError('Cancelled Property cannot be sold')
-            else:
-                self.state = 'sold'
+    def action_cancel(self):
+        self.ensure_one()
+        if self.state == 'sold':
+            raise ValidationError('Sold Property cannot be cancel')
+        else:
+            self.state = 'cancelled'
 
     @api.constrains('selling_price')
     def _check_selling_price(self):
@@ -115,6 +120,52 @@ class EstateProperty(models.Model):
 
     @api.ondelete(at_uninstall=False)
     def _unlink_property(self):
-        if any(state not in ('new', 'cancelled') for state in self):
+        flag = False
+        for record in self:
+            if record.state in ('offer_received', 'offer_accepted', 'sold'):
+                flag = True
+        if flag:
             raise UserError("Can't delete this property!")
 
+    def action_offer_stat_view(self):
+        self.ensure_one()
+
+        if self.offer_count == 1:
+            record = self.env['estate.property.offer'].search([('property_id', '=', self.id)], limit=1)
+            print(record)
+            return {
+            'name': 'Offers',
+            'type': 'ir.actions.act_window',
+            'res_model': 'estate.property.offer',
+            'view_mode': 'form',
+            'res_id': record.id,
+            'domain': [('property_id', '=', self.id)],
+            'arch': """
+                <form>
+                    <field name="price"/>
+                    <field name="partner_id"/>
+                    <field name="validity"/>
+                    <field name="date_deadline"/>
+                    <field name="status"/>
+                </list>
+            """,
+        }
+
+        return {
+            'name': 'Offers',
+            'type': 'ir.actions.act_window',
+            'res_model': 'estate.property.offer',
+            'view_mode': 'list',
+            'domain': [('property_id', '=', self.id)],
+            'arch': """
+                <list decoration-danger="status == 'refused'"
+                      decoration-success="status == 'accepted'"
+                      editable="bottom">
+                    <field name="price"/>
+                    <field name="partner_id"/>
+                    <field name="validity"/>
+                    <field name="date_deadline"/>
+                    <field name="status"/>
+                </list>
+            """,
+        }

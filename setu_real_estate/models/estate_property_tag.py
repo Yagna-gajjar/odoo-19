@@ -4,6 +4,7 @@ from odoo import models, fields
 class EstateProperTag(models.Model):
     _name = 'estate.property.tag'
     _order = "name"
+    _rec_name =  'name'
 
     name = fields.Char(string='Name')
     color = fields.Integer(string='Color')

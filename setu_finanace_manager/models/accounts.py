@@ -23,7 +23,6 @@ class Accounts(models.Model):
 
     @api.depends("opening_balance", "transaction_ids")
     def _compute_current_balance(self):
-        print("_compute_current_balance called")
         for records in self:
             expense_amount = 0
             income_amount = 0
