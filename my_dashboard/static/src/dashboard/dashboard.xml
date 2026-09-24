@@ -1,0 +1,7 @@
+<templates>
+    <t t-name="my_dashboard.Dashboard">
+        <div>
+            <h1>My Dashboard</h1>
+        </div>
+    </t>
+</templates>
