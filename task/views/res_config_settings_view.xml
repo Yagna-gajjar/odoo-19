@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="res_config_settings_view_form_inherit_sale_testing" model="ir.ui.view">
+       <field name="name">res.config.settings.view.form.inherit.sale.testing</field>
+       <field name="model">res.config.settings</field>
+       <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+       <field name="arch" type="xml">
+           <xpath expr="//app[@name='sale_management']" position="inside">
+               <block title="Credit Rules">
+                   <setting string="Add Credit Rules" help="Manage and configure credit thresholds for customers">
+                        <field name="add_credit"/>
+                        <button
+                            name="action_open_credit_rules"
+                            type="object"
+                            string="Configure Credit Rules"
+                            icon="oi-arrow-right"
+                            class="btn-link"
+                        />
+                   </setting>
+               </block>
+           </xpath>
+       </field>
+   </record>
+</odoo>

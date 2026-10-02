@@ -10,10 +10,23 @@ class EstateProperty(models.Model):
 
     name = fields.Char(string='Title', required=True)
     description = fields.Text(string='Description')
-    postcode = fields.Char(string='Postcode')
     date_availability = fields.Date(string='Available From')
     expected_price = fields.Float(string='Expected Price', required=True)
     selling_price = fields.Float(string='Selling Price')
+
+    address = fields.Char(string="Address")
+    city = fields.Char(string="City")
+    state_id = fields.Many2one(
+        'res.country.state',
+        string="State"
+    )
+    country_id = fields.Many2one(
+        'res.country',
+        string="Country"
+    )
+    postcode = fields.Char(string="Postcode")
+
+    # Property details
     bedrooms = fields.Integer(string='Bedrooms')
     living_area = fields.Integer(string='Living Area (sqm)')
     garden_area = fields.Integer(string='Garden Area')
@@ -30,6 +43,7 @@ class EstateProperty(models.Model):
     property_type_id = fields.Many2one(string='Property Type', comodel_name='estate.property.type')
     property_tag = fields.Many2many(string='Property Tag', comodel_name='estate.property.tag')
     user_id = fields.Many2one(comodel_name="res.users", string="Salesman")
+
     buyer_id = fields.Many2one(comodel_name="res.partner", string="Buyer")
     offer_ids = fields.One2many(comodel_name="estate.property.offer", inverse_name="property_id", string="Offers")
     best_offer = fields.Float(string='Best Offer', compute='_compute_best_offer')
@@ -87,6 +101,7 @@ class EstateProperty(models.Model):
     @api.depends('offer_ids', 'offer_ids.status')
     def _compute_property_state(self):
         for record in self:
+            print(record.state)
             if record.state not in ('cancelled', 'sold'):
                 if record.offer_ids:
                     if any(offer.status == 'accepted' for offer in record.offer_ids):
