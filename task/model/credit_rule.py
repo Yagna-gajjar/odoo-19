@@ -9,13 +9,9 @@ class CreditRule(models.Model):
         string='Define Rule',
         required=True
     )
-    amount_from = fields.Float(
-        string='Amount From',
+    min_amount = fields.Float(
+        string='Min Amount',
         required=True
-    )
-
-    amount_to = fields.Float(
-        string='Amount To'
     )
 
     credit_per = fields.Float(

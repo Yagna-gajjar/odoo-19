@@ -8,7 +8,6 @@
            <xpath expr="//app[@name='sale_management']" position="inside">
                <block title="Credit Rules">
                    <setting string="Add Credit Rules" help="Manage and configure credit thresholds for customers">
-                        <field name="add_credit"/>
                         <button
                             name="action_open_credit_rules"
                             type="object"
