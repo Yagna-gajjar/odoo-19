@@ -113,7 +113,7 @@
     />
     <menuitem
         id="menu_employee"
-        name="Employees"
+        name="Employees"menu_hr_root
         parent="employee_root_menu"
         action="employee_base_action"
         sequence="1"

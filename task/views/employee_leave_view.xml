@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="employee_leave_rule_own_leaves" model="ir.rule">
+        <field name="name">Employee: Own Leaves</field>
+        <field name="model_id" ref="model_employee_leave"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="employee_leave_list_view" model="ir.ui.view">
+        <field name="name">employee.leave.list.view</field>
+        <field name="model">employee.leave</field>
+        <field name="arch" type="xml">
+            <list
+                    decoration-muted="state == 'cancelled'"
+                    decoration-danger="state == 'rejected'"
+                    decoration-success="state == 'approved'">
+                <field name="employee_id"/>
+                <field name="leave_type_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="number_of_days"/>
+                <field name="reason"/>
+                <field name="state"/>
+                <field name="assigned_to"/>
+                <field name="approved_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="employee_leave_form_view" model="ir.ui.view">
+        <field name="name">employee.leave.form.view</field>
+        <field name="model">employee.leave</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_request" type="object"
+                            invisible="state != 'draft'"
+                            string="Request"/>
+                    <button name="action_approve" class="btn-primary" type="object"
+                            invisible="state != 'requested' or not can_approve"
+                            string="Approve"/>
+                    <button name="action_reject" class="btn-danger" type="object"
+                            invisible="state != 'requested' or not can_approve"
+                            string="Reject"/>
+                    <field name="state" widget="statusbar" statusbar_visible="requested,approved"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="employee_id" class="oe_inline" placeholder="Employee Name"/>
+                    </h1>
+                    <group>
+                        <field name="leave_type_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="number_of_days"/>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+
+                <chatter>
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </chatter>
+            </form>
+        </field>
+    </record>
+    <record id="employee_leave_action" model="ir.actions.act_window">
+        <field name="name">Employee Leave</field>
+        <field name="res_model">employee.leave</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

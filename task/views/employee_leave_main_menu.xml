@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+            id="employee_leave_root_menu"
+            name="Leave"
+            parent="hr.menu_hr_root"
+            sequence="200"
+    />
+    <menuitem
+            id="employee_leave_menu"
+            name="Leave Request"
+            parent="employee_leave_root_menu"
+            action="employee_leave_action"
+            sequence="1"
+    />
+    <menuitem
+            id="employee_leave_type_menu"
+            name="Employee Leave Type"
+            parent="employee_leave_root_menu"
+            action="employee_leave_type_action"
+            sequence="2"
+    />
+</odoo>

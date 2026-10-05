@@ -1,0 +1,161 @@
+.ai-button {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #714B67;
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+
+    z-index: 99999;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.ai-chat-window {
+    position: fixed;
+
+    right: 25px;
+    bottom: 100px;
+
+    width: 350px;
+    height: 450px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.25);
+
+    z-index: 99998;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+.ai-chat-header {
+    height: 60px;
+
+    background: #714B67;
+    color: white;
+
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-weight: bold;
+}
+
+
+.ai-close-button {
+    border: none;
+    background: transparent;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+.ai-chat-body {
+    flex: 1;
+
+    padding: 15px;
+
+    overflow-y: auto;
+}
+
+
+.ai-welcome {
+    padding: 10px;
+
+    background: #f3f3f3;
+
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+}
+
+
+.ai-message {
+    max-width: 80%;
+
+    padding: 10px 12px;
+
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    word-wrap: break-word;
+}
+
+
+.ai-message.user {
+    margin-left: auto;
+
+    background: #714B67;
+
+    color: white;
+}
+
+
+.ai-chat-input {
+    display: flex;
+
+    padding: 10px;
+
+    border-top: 1px solid #ddd;
+
+    gap: 8px;
+}
+
+
+.ai-chat-input input {
+    flex: 1;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    padding: 10px;
+
+    outline: none;
+}
+
+
+.ai-chat-input input:focus {
+    border-color: #714B67;
+}
+
+
+.ai-chat-input button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 0 15px;
+
+    background: #714B67;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.ai-chat-input button:hover {
+    opacity: 0.9;
+}
