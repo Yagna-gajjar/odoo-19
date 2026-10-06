@@ -1,13 +1,11 @@
 from odoo import api, models
 
-
 class OdooSchemaService(models.AbstractModel):
     _name = "setu.ai.schema"
     _description = "Odoo AI Schema Service"
 
     @api.model
     def get_model_catalog(self):
-
         catalog = {}
 
         for model_name, model in self.env.registry.models.items():
@@ -15,7 +13,17 @@ class OdooSchemaService(models.AbstractModel):
             if model_name.startswith("ir.") or model_name.startswith("base."):
                 continue
 
-            catalog[model_name] = model._description
+            field_descriptions = []
+
+            for field_name, field in model._fields.items():
+
+                if field.string:
+                    field_descriptions.append(field.string)
+
+            catalog[model_name] = (
+                    f"{model._description}. "
+                    + " ".join(field_descriptions)
+            )
 
         return catalog
 
@@ -53,3 +61,13 @@ class OdooSchemaService(models.AbstractModel):
             }
 
         return models_data
+
+    @api.model
+    def get_schema_for_models(self, model_names):
+        full_schema = self.get_schema()
+
+        return {
+            model_name: full_schema[model_name]
+            for model_name in model_names
+            if model_name in full_schema
+        }

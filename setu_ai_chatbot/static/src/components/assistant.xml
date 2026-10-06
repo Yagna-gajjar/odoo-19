@@ -53,12 +53,6 @@
                 >
                     Send
                 </button>
-                <button t-on-click="testModelCatalog">
-                    Test Model Catalog
-                </button>
-                <button t-on-click="testAIQuery">
-                    Test AI Query
-                </button>
             </div>
         </div>
         <button
