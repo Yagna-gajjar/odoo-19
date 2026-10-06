@@ -1,83 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <templates xml:space="preserve">
-
     <t t-name="setu_ai_chatbot.Assistant">
-
-        <!-- Chat Window -->
         <div t-if="state.isOpen" class="ai-chat-window">
-
-            <!-- Header -->
             <div class="ai-chat-header">
-
                 <span>
                     🤖 Odoo AI Assistant
                 </span>
-
                 <button
-                    class="ai-close-button"
-                    t-on-click="toggleChat"
+                        class="ai-close-button"
+                        t-on-click="toggleChat"
                 >
                     ×
                 </button>
-
             </div>
 
-
-            <!-- Messages -->
             <div class="ai-chat-body">
-
                 <div class="ai-welcome">
                     👋 Hello!<br/>
                     How can I help you?
                 </div>
-
                 <t
-                    t-foreach="state.messages"
-                    t-as="message"
-                    t-key="message_index"
+                        t-foreach="state.messages"
+                        t-as="message"
+                        t-key="message_index"
                 >
-
                     <div
-                        t-att-class="'ai-message ' + message.type"
+                            t-att-class="'ai-message ' + message.type"
                     >
                         <t t-esc="message.text"/>
                     </div>
-
                 </t>
-
+                <div
+                        t-if="state.isTyping"
+                        class="ai-typing"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
 
-
-            <!-- Input -->
             <div class="ai-chat-input">
-
                 <input
-                    type="text"
-                    placeholder="Ask something..."
-                    t-model="state.message"
-                    t-on-keydown="onKeydown"
+                        type="text"
+                        placeholder="Ask something..."
+                        t-model="state.message"
+                        t-on-keydown="onKeydown"
                 />
-
                 <button
-                    t-on-click="sendMessage"
+                        t-on-click="sendMessage"
                 >
                     Send
                 </button>
-
+                <button t-on-click="testModelCatalog">
+                    Test Model Catalog
+                </button>
+                <button t-on-click="testAIQuery">
+                    Test AI Query
+                </button>
             </div>
-
         </div>
-
-
-        <!-- Floating Button -->
         <button
-            class="ai-button"
-            t-on-click="toggleChat"
+                class="ai-button"
+                t-on-click="toggleChat"
         >
             🤖
         </button>
-
     </t>
-
 </templates>
