@@ -1,9 +1,16 @@
 from odoo import models, fields
 
+
 class SaleOrder(models.Model):
-    _inherit = "sale.order"
+    _inherit = ["sale.order",'mail.thread', 'mail.activity.mixin']
     credit_per = fields.Float(string='Credit (%)')
     credit_amount = fields.Float(string='Credit Amount')
+
+
+    urgent_order = fields.Boolean(string='Urgent Order')
+    transfer = fields.Boolean(string='Transfer')
+    invoicing = fields.Boolean(string='Invoicing')
+
     def get_credit_per(self):
         self.ensure_one()
         self.credit_per = 1
@@ -27,7 +34,6 @@ class SaleOrder(models.Model):
                 })
         return res
 
-
     def action_confirm(self):
         res = super().action_confirm()
         partner = self.partner_id
@@ -36,12 +42,15 @@ class SaleOrder(models.Model):
             self.get_credit_per()
             self.credit_amount = (self.credit_per * self.amount_total) / 100
             total_credit += self.credit_amount
-
             partner.write({
                 'credits': total_credit
             })
-
+            if self.transfer:
+                summary = 'Validate Delivery',
+                note = '<p>Please review this sale order transfer</p>'
+                self.create_activity(self.env['ir.model']._get_id('stock.picking'), summary, note)
         return res
+
 
     def action_cancel(self):
         res = super().action_cancel()
@@ -56,3 +65,21 @@ class SaleOrder(models.Model):
             })
 
         return res
+
+    def create_activity(self, model, summary, note):
+        for order in self:
+            order_config = self.warehouse_id.order_configuration_ids
+            for config in order_config:
+                if config.type_of_order == 'sales':
+                    all_users = config.user_ids
+                    for picking in order.picking_ids:
+                        if config.operation_type == picking.picking_type_id:
+                            for user in all_users:
+                                self.env['mail.activity'].create({
+                                    'activity_type_id': config.type_of_activity.id,
+                                    'res_model_id': model,
+                                    'res_id': picking.id,
+                                    'user_id': user.id,
+                                    'summary': summary,
+                                    'note': note,
+                                })

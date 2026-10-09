@@ -9,7 +9,11 @@
         "views/employee_leave_view.xml",
         "views/employee_leave_type_view.xml",
         "views/employee_leave_main_menu.xml",
-        "views/hr_employee_view.xml"
+        "views/hr_employee_view.xml",
+        "views/stock_warehouse_view.xml",
+        "views/sale_order_view.xml",
+        "views/purchase_order_view.xml",
+        # "views/stock_picking_view.xml"
     ],
     "installable": True,
 }

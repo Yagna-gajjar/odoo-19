@@ -2,3 +2,4 @@ id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_credit_rule_user,credit.rule,model_credit_rule,,1,1,1,1
 access_employee_leave_type_user,employee.leave.type,model_employee_leave_type,,1,1,1,1
 access_employee_leave_user,employee.leave,model_employee_leave,,1,1,1,0
+access_order_configuration_user,order.configuration,model_order_configuration,,1,1,1,1
