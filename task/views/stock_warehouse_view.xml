@@ -13,6 +13,9 @@
                             <field name="sales_team"/>
                             <field name="operation_type"/>
                             <field name="user_ids"  widget="many2many_tags"/>
+                            <field name="urgent_order"/>
+                            <field name="transfer"/>
+                            <field name="invoicing"/>
                             <field name="type_of_activity"/>
                         </list>
                     </field>

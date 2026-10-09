@@ -45,12 +45,9 @@ class SaleOrder(models.Model):
             partner.write({
                 'credits': total_credit
             })
-            if self.transfer:
-                summary = 'Validate Delivery',
-                note = '<p>Please review this sale order transfer</p>'
-                self.create_activity(self.env['ir.model']._get_id('stock.picking'), summary, note)
+            if self.urgent_order:
+                self.create_activity()
         return res
-
 
     def action_cancel(self):
         res = super().action_cancel()
@@ -66,20 +63,20 @@ class SaleOrder(models.Model):
 
         return res
 
-    def create_activity(self, model, summary, note):
+    def create_activity(self):
         for order in self:
             order_config = self.warehouse_id.order_configuration_ids
             for config in order_config:
                 if config.type_of_order == 'sales':
                     all_users = config.user_ids
                     for picking in order.picking_ids:
-                        if config.operation_type == picking.picking_type_id:
+                        if config.operation_type == picking.picking_type_id and order.urgent_order:
                             for user in all_users:
                                 self.env['mail.activity'].create({
                                     'activity_type_id': config.type_of_activity.id,
-                                    'res_model_id': model,
+                                    'res_model_id': self.env['ir.model']._get_id('stock.picking'),
                                     'res_id': picking.id,
                                     'user_id': user.id,
-                                    'summary': summary,
-                                    'note': note,
+                                    'summary': 'Urgent Order',
+                                    'note': '<p>Please review this urgent sale order</p>',
                                 })
