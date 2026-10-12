@@ -6,7 +6,6 @@ class SaleOrder(models.Model):
     credit_per = fields.Float(string='Credit (%)')
     credit_amount = fields.Float(string='Credit Amount')
 
-
     urgent_order = fields.Boolean(string='Urgent Order')
     transfer = fields.Boolean(string='Transfer')
     invoicing = fields.Boolean(string='Invoicing')
@@ -45,7 +44,8 @@ class SaleOrder(models.Model):
             partner.write({
                 'credits': total_credit
             })
-            if self.urgent_order:
+            print(self.urgent_order or self.transfer or self.invoicing)
+            if self.urgent_order or self.transfer or self.invoicing:
                 self.create_activity()
         return res
 
@@ -67,10 +67,10 @@ class SaleOrder(models.Model):
         for order in self:
             order_config = self.warehouse_id.order_configuration_ids
             for config in order_config:
-                if config.type_of_order == 'sales':
+                if config.type_of_order == 'sales' and config.sales_team == order.team_id:
                     all_users = config.user_ids
                     for picking in order.picking_ids:
-                        if config.operation_type == picking.picking_type_id and order.urgent_order:
+                        if config.operation_type == picking.picking_type_id and config.urgent_order:
                             for user in all_users:
                                 self.env['mail.activity'].create({
                                     'activity_type_id': config.type_of_activity.id,

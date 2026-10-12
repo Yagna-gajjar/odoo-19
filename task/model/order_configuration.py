@@ -11,9 +11,15 @@ class OrderConfiguration(models.Model):
     user_ids = fields.Many2many(string='Users', comodel_name='res.users', required='True')
     type_of_activity = fields.Many2one(string='Activity', comodel_name='mail.activity.type', required='True')
     stock_warehouse_id = fields.Many2one(string='Stock Warehouse', comodel_name='stock.warehouse')
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='stock_warehouse_id.company_id',
+        store=True
+    )
     urgent_order = fields.Boolean(string='Urgent Order')
     transfer = fields.Boolean(string='Transfer')
     invoicing = fields.Boolean(string='Invoicing')
+
 
     @api.onchange('type_of_order')
     def _change_sales_team(self):
@@ -25,3 +31,5 @@ class OrderConfiguration(models.Model):
         for record in self:
             if record.type_of_order != 'sales' and len(record.sales_team) > 0:
                 raise ValidationError("can't choose sales teams for order type purchase")
+            if record.type_of_order == 'sales' and len(record.sales_team) == 0:
+                raise ValidationError("required to choose sales team")

@@ -161,57 +161,38 @@ class OdooAIService(models.AbstractModel):
         return self._serialize_result(result)
 
     def _serialize_result(self, result):
-
-        # search_count()
         if isinstance(result, int):
             return result
-
-        # search()
         if hasattr(result, "__iter__"):
-
             serialized = []
-
             for record in result:
-
                 if hasattr(record, "_name"):
-
                     serialized.append({
                         "id": record.id,
                         "name": record.display_name,
                     })
-
                 elif isinstance(record, dict):
-
                     serialized.append(record)
-
                 else:
-
                     serialized.append(record)
-
             return serialized
-
         return result
 
     @api.model
     def generate_query(self, question):
-
         schema_service = self.env[
             "setu.ai.schema"
         ]
-
         schema = schema_service.get_schema()
-
         relevant_models = retriever.find_relevant_models(
             question,
             schema,
             top_k=5,
         )
-
         model_names = [
             item["model"]
             for item in relevant_models
         ]
-
         relevant_schema = (
             schema_service.get_schema_for_models(
                 model_names

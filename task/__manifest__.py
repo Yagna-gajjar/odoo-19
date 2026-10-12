@@ -13,7 +13,7 @@
         "views/stock_warehouse_view.xml",
         "views/sale_order_view.xml",
         "views/purchase_order_view.xml",
-        # "views/stock_picking_view.xml"
+        "views/stock_picking_view.xml"
     ],
     "installable": True,
 }
