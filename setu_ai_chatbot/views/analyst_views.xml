@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_setu_ai_analyst" model="ir.actions.client">
+        <field name="name">AI Data Analyst</field>
+        <field name="tag">setu_ai_chatbot.analyst</field>
+    </record>
+
+    <menuitem id="menu_setu_ai_analyst_root"
+              name="AI Analyst"
+              action="action_setu_ai_analyst"
+              sequence="50"
+              groups="base.group_user"/>
+</odoo>

@@ -1,65 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <templates xml:space="preserve">
-    <t t-name="setu_ai_chatbot.Assistant">
-        <div t-if="state.isOpen" class="ai-chat-window">
-            <div class="ai-chat-header">
-                <span>
-                    🤖 Odoo AI Assistant
-                </span>
-                <button
-                        class="ai-close-button"
-                        t-on-click="toggleChat"
-                >
-                    ×
-                </button>
-            </div>
-
-            <div class="ai-chat-body">
-                <div class="ai-welcome">
-                    👋 Hello!<br/>
-                    How can I help you?
+    <t t-name="setu_ai_chatbot.Analyst">
+        <div class="o_setu_ai_analyst">
+            <aside class="o_setu_ai_sidebar" aria-label="Conversations">
+                <div class="o_setu_ai_sidebar_header">
+                    <h1>AI Data Analyst</h1>
+                    <button type="button" class="btn btn-secondary" t-on-click="newConversation" t-att-disabled="state.isSending">
+                        New conversation
+                    </button>
                 </div>
-                <t
-                        t-foreach="state.messages"
-                        t-as="message"
-                        t-key="message_index"
-                >
-                    <div
-                            t-att-class="'ai-message ' + message.type"
-                    >
-                        <t t-esc="message.text"/>
-                    </div>
-                </t>
-                <div
-                        t-if="state.isTyping"
-                        class="ai-typing"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <ul class="o_setu_ai_conversation_list">
+                    <li t-foreach="state.conversations" t-as="conversation" t-key="conversation.id">
+                        <button
+                            type="button"
+                            class="o_setu_ai_conversation"
+                            t-att-data-conversation-id="conversation.id"
+                            t-att-aria-current="state.conversationId === conversation.id ? 'true' : 'false'"
+                            t-on-click="openConversation"
+                            t-att-disabled="state.isSending || state.isLoading">
+                            <t t-esc="conversation.name"/>
+                        </button>
+                    </li>
+                </ul>
+            </aside>
+            <section class="o_setu_ai_main" aria-label="Analytics conversation">
+                <div class="o_setu_ai_thread" t-ref="thread" role="log" aria-live="polite" aria-relevant="additions">
+                    <p t-if="!state.messages.length" class="o_setu_ai_welcome">
+                        Ask a question about your Odoo data. Follow-up questions stay in this conversation.
+                    </p>
+                    <article t-foreach="state.messages" t-as="message" t-key="message.id" t-att-class="'o_setu_ai_message o_setu_ai_message_' + message.role">
+                        <p class="o_setu_ai_role"><t t-esc="message.role === 'user' ? 'You' : 'Analyst'"/></p>
+                        <p t-if="message.role === 'user'" class="o_setu_ai_body"><t t-esc="message.body"/></p>
+                        <p t-if="message.error" class="o_setu_ai_error" role="alert"><t t-esc="message.error"/></p>
+                        <p t-if="message.explanation" class="o_setu_ai_explanation"><t t-esc="message.explanation"/></p>
+                        <p t-if="message.summary &amp;&amp; message.summary !== message.explanation" class="o_setu_ai_summary">
+                            <t t-esc="message.summary"/>
+                        </p>
+                        <div t-if="message.table &amp;&amp; message.table.columns.length" class="o_setu_ai_table_wrap">
+                            <table>
+                                <caption>Computed result</caption>
+                                <thead>
+                                    <tr>
+                                        <th t-foreach="message.table.columns" t-as="column" t-key="column.key" scope="col">
+                                            <t t-esc="column.label"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="!message.table.rows.length">
+                                        <td t-att-colspan="message.table.columns.length">No matching records.</td>
+                                    </tr>
+                                    <tr t-foreach="message.table.rows" t-as="row" t-key="row_index">
+                                        <td t-foreach="message.table.columns" t-as="column" t-key="column.key" t-att-class="'o_setu_ai_cell o_setu_ai_cell_' + column.type">
+                                            <t t-esc="formatCell(row[column.key], column.type)"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                    <p t-if="state.isSending" class="o_setu_ai_status" role="status">Working on your question…</p>
                 </div>
-            </div>
-
-            <div class="ai-chat-input">
-                <input
-                        type="text"
-                        placeholder="Ask something..."
-                        t-model="state.message"
+                <form class="o_setu_ai_composer" t-on-submit.prevent="sendQuestion" t-att-aria-busy="state.isSending">
+                    <label class="o_setu_ai_label" for="setu_ai_question">Question</label>
+                    <textarea
+                        id="setu_ai_question"
+                        t-model="state.question"
                         t-on-keydown="onKeydown"
-                />
-                <button
-                        t-on-click="sendMessage"
-                >
-                    Send
-                </button>
-            </div>
+                        t-att-disabled="state.isSending"
+                        rows="3"
+                        placeholder="Ask about customers, orders, or a follow-up such as show only the top 5."/>
+                    <details class="o_setu_ai_hints">
+                        <summary>Model hints (optional)</summary>
+                        <label class="o_setu_ai_label" for="setu_ai_hints">Technical model names, separated by commas</label>
+                        <input
+                            id="setu_ai_hints"
+                            type="text"
+                            t-model="state.hints"
+                            t-att-disabled="state.isSending"
+                            placeholder="res.partner, sale.order"/>
+                    </details>
+                    <div class="o_setu_ai_actions">
+                        <button type="submit" class="btn btn-primary" t-att-disabled="state.isSending || !state.question.trim()">
+                            <t t-if="state.isSending">Sending…</t>
+                            <t t-else="">Ask</t>
+                        </button>
+                        <p t-if="state.status" class="o_setu_ai_status" role="status"><t t-esc="state.status"/></p>
+                    </div>
+                </form>
+            </section>
         </div>
-        <button
-                class="ai-button"
-                t-on-click="toggleChat"
-        >
-            🤖
-        </button>
     </t>
 </templates>

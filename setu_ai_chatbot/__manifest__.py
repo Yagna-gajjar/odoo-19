@@ -1,8 +1,8 @@
 {
     'name': 'AI Odoo Assistant',
-    'version': '1.4',
+    'version': '1.6',
     'category': 'Tools',
-    'summary': 'AI assistant for Odoo',
+    'summary': 'AI assistant and schema registry for Odoo',
     'depends': ['base', 'web'],
 
     'assets': {
@@ -13,6 +13,10 @@
         ],
     },
     'data': [
+        'security/ir.model.access.csv',
+        'security/conversation_rules.xml',
+        'views/schema_views.xml',
+        'views/analyst_views.xml',
         'views/templates.xml',
     ],
     'installable': True,

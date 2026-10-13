@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_setu_ai_schema_model_system,setu.ai.schema.model.system,model_setu_ai_schema_model,base.group_system,1,1,1,1
+access_setu_ai_schema_field_system,setu.ai.schema.field.system,model_setu_ai_schema_field,base.group_system,1,1,1,1
+access_setu_ai_conversation_user,setu.ai.conversation.user,model_setu_ai_conversation,base.group_user,1,1,1,1
+access_setu_ai_conversation_message_user,setu.ai.conversation.message.user,model_setu_ai_conversation_message,base.group_user,1,1,1,1
