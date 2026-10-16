@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class ProductQuantity(models.Model):
     _name = 'product.quantity'
 
-    product_id = fields.Many2one(comodel_name='product.template', string='Product', required=True)
+    product_id = fields.Many2one(comodel_name='product.product', string='Product', required=True)
     quantity = fields.Float(string='Quantity', required=True)
     allowed_vendors_products_id = fields.Many2one(comodel_name='vendor.allowed.products', string='Allowed Vendors Products')
 
