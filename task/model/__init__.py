@@ -8,6 +8,8 @@ from . import hr_employee
 from . import order_configuration
 from . import stock_warehouse
 from . import purchase_order
-# from . import sale_advance_payment_inv
 from . import stock_picking
 from . import account_move
+from . import tax_configuration
+from . import vendors_allowed_products
+from . import product_quantity

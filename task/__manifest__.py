@@ -13,7 +13,9 @@
         "views/stock_warehouse_view.xml",
         "views/sale_order_view.xml",
         "views/purchase_order_view.xml",
-        "views/stock_picking_view.xml"
+        "views/stock_picking_view.xml",
+        "views/account_move_view.xml",
+        "views/allowed_vendor_products.xml"
     ],
     "installable": True,
 }

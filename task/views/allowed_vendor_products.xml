@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="allowed_vendor_products_list_view" model="ir.ui.view">
+        <field name="name">allowed.vendor.products.list.view</field>
+        <field name="model">vendor.allowed.products</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+    <record id="allowed_vendor_products_form_view" model="ir.ui.view">
+        <field name="name">allowed.vendor.products.form.view</field>
+        <field name="model">vendor.allowed.products</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="partner_ids" widget="many2many_tags"/>
+                    <field name="allowed_product_lines_ids">
+                        <list editable="bottom">
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                        </list>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="allowed_vendor_products_action" model="ir.actions.act_window">
+        <field name="name">Allowed Vendor Products</field>
+        <field name="res_model">vendor.allowed.products</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+            id="menu_allowed_vendor_products"
+            name="Allowed Products"
+            parent="account.menu_finance_payables"
+            action="allowed_vendor_products_action"
+            sequence="10"
+    />
+</odoo>

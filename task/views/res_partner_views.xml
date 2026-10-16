@@ -7,6 +7,20 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="credits"/>
+                <field name="purchase_capacity"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Tax Configuration">
+                    <field name="tax_configuration_ids">
+                        <list editable="bottom">
+                            <field name="company_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="limit"/>
+                            <field name="tax_id"/>
+                        </list>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

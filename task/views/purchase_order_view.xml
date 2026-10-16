@@ -10,6 +10,19 @@
                 <field name="transfer"/>
                 <field name="invoicing"/>
             </xpath>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="allowed_vendors_products_id"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Allowed Product">
+                    <field name="allowed_product_lines_ids">
+                        <list edit="0">
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

@@ -1,4 +1,8 @@
-from odoo import models, fields
+from openpyxl.worksheet import related
+
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
@@ -6,6 +10,26 @@ class PurchaseOrder(models.Model):
     urgent_order = fields.Boolean(string='Urgent Order')
     transfer = fields.Boolean(string='Transfer')
     invoicing = fields.Boolean(string='Invoicing')
+
+    allowed_vendors_products_id = fields.Many2one(comodel_name='vendor.allowed.products', string='Allowed Products')
+    allowed_product_lines_ids = fields.One2many(comodel_name='product.quantity', related='allowed_vendors_products_id.allowed_product_lines_ids', string='Allowed product lines')
+
+    @api.constrains('amount_untaxed')
+    def _check_untaxed_amount_limit(self):
+        if self.partner_id.purchase_capacity:
+            if self.amount_untaxed > self.partner_id.purchase_capacity:
+                raise ValidationError(f'Untaxed amount exceded limit of {self.partner_id.purchase_capacity}')
+
+    @api.depends('partner_id')
+    def _compute_allowed_products(self):
+        for record in self:
+            if record.partner_id:
+                allowed_products = self.env['vendor.allowed.products'].search([])
+                for allowed_product in allowed_products:
+                    if record.partner_id in allowed_product.partner_ids:
+                        self.allowed_vendors_products_id = allowed_product
+                        return
+            self.allowed_vendors_products_id = None
 
     def button_confirm(self):
         res = super().button_confirm()
