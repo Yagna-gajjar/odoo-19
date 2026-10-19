@@ -1,7 +1,7 @@
 {
     "name": "Tasks",
     "version": "1.4",
-    "depends": ["base", "sale", "mail"],
+    "depends": ["base", "sale", "mail", "purchase"],
     "data": [
         'security/ir.model.access.csv',
         "views/res_partner_views.xml",
@@ -15,7 +15,8 @@
         "views/purchase_order_view.xml",
         "views/stock_picking_view.xml",
         "views/account_move_view.xml",
-        "views/allowed_vendor_products.xml"
+        "views/allowed_vendor_products.xml",
+        "views/employee_asset_assignment.xml"
     ],
     "installable": True,
 }

@@ -11,5 +11,5 @@ class ProductQuantity(models.Model):
 
     @api.constrains('quantity')
     def _check_quantity(self):
-        if self.quantity < 0:
-            raise ValidationError('Quantity Cannot be negative')
+        if self.quantity <= 0:
+            raise ValidationError('Quantity Cannot be negative or Zero')

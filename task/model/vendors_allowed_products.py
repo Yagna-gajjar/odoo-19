@@ -16,8 +16,9 @@ class VendorAllowedProducts(models.Model):
 
         allowed_products = data.allowed_product_lines_ids
         for product_quantity in allowed_products:
-            if new_product == product_quantity.product_id:
-                raise ValidationError(f'{new_product.name} already exist')
+            matched_products = new_product & product_quantity.product_id
+            if bool(matched_products):
+                raise ValidationError(f'{', '.join(matched_products.mapped('name'))} already exist')
 
     @api.constrains('partner_ids')
     def _check_partner_ids(self):
@@ -26,5 +27,6 @@ class VendorAllowedProducts(models.Model):
 
         all_vendors = data.partner_ids
         for partner in all_vendors:
-            if new_vendor == partner:
-                raise ValidationError(f'{new_vendor.name} already exist')
+            matched_vendors = new_vendor & partner
+            if bool(matched_vendors):
+                raise ValidationError(f'{', '.join(matched_vendors.mapped('name'))} already exist')

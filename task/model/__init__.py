@@ -13,3 +13,5 @@ from . import account_move
 from . import tax_configuration
 from . import vendors_allowed_products
 from . import product_quantity
+from . import purchase_order_line
+from . import employee_asset_assignment

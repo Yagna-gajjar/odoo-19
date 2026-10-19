@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="employee_asset_assignment_list_view" model="ir.ui.view">
+        <field name="name">employee.asset.assignment.list.view</field>
+        <field name="model">employee.asset.assignment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="product_id"/>
+                <field name="assignment_date"/>
+                <field name="return_date"/>
+                <field name="notes"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="employee_asset_assignment_form_view" model="ir.ui.view">
+        <field name="name">employee.asset.assignment.form.view</field>
+        <field name="model">employee.asset.assignment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="return_asset"
+                            invisible="state != 'assigned'"
+                            type="object"
+                            string="Return Asses"
+                            class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="assigned,returned"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="product_id"/>
+                        <field name="assignment_date"/>
+                        <field name="return_date"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="employee_asset_assignment_action" model="ir.actions.act_window">
+        <field name="name">Employee Assets Assignment</field>
+        <field name="res_model">employee.asset.assignment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+            id="menu_employee_asset_assignment"
+            name="Assigned Assets"
+            parent="hr.menu_hr_root"
+            action="employee_asset_assignment_action"
+            sequence="10"
+    />
+</odoo>
