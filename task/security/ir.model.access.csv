@@ -8,3 +8,5 @@ access_vendor_allowed_products_user,vendor.allowed.products,model_vendor_allowed
 access_product_quantity_user,product.quantity,model_product_quantity,,1,1,1,1
 access_employee_asset_assignment_user,employee.asset.assignment,model_employee_asset_assignment,,1,1,1,1
 access_employee_asset_user,employee.asset,model_employee_asset,,1,1,1,1
+access_business_trip_user,business.trip,model_business_trip,,1,1,1,1
+access_business_trip_expense_user,business.trip.expense,model_business_trip_expense,,1,1,1,1
