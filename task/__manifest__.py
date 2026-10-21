@@ -16,7 +16,9 @@
         "views/stock_picking_view.xml",
         "views/account_move_view.xml",
         "views/allowed_vendor_products.xml",
-        "views/employee_asset_assignment.xml"
+        "views/employee_asset_assignment.xml",
+        "views/employee_asset.xml",
+        "views/assets_management_menu.xml"
     ],
     "installable": True,
 }

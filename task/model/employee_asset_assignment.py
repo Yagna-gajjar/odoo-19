@@ -4,9 +4,10 @@ from datetime import date
 
 class EmployeeAssetAssignment(models.Model):
     _name = 'employee.asset.assignment'
+    _rec_name = 'employee_id'
 
     employee_id = fields.Many2one(comodel_name='hr.employee', string='Employee', required=True)
-    product_id = fields.Many2one(comodel_name='product.product', string='Product', required=True)
+    assets_id = fields.Many2one(comodel_name='employee.asset', string='Product', required=True)
     assignment_date = fields.Date(string='Assignment Date', required=True)
     return_date = fields.Date(string='Return Date')
     state = fields.Selection(selection=[('assigned', 'Assigned'), ('returned', 'Returned')], default='assigned')
@@ -31,3 +32,12 @@ class EmployeeAssetAssignment(models.Model):
         today = date.today()
         self.return_date = today
         self.state = 'returned'
+
+    @api.constrains('assets_id')
+    def _check_asset_capacity(self):
+        for rec in self:
+            asset = rec.assets_id
+            if asset and len(asset.employee_assignment_ids) > asset.total:
+                raise ValidationError(
+                    'No assets are left.'
+                )
