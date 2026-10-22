@@ -10,3 +10,4 @@ access_employee_asset_assignment_user,employee.asset.assignment,model_employee_a
 access_employee_asset_user,employee.asset,model_employee_asset,,1,1,1,1
 access_business_trip_user,business.trip,model_business_trip,,1,1,1,1
 access_business_trip_expense_user,business.trip.expense,model_business_trip_expense,,1,1,1,1
+access_business_trip_employee_user,business.trip.employee,model_business_trip_employee,,1,1,1,1

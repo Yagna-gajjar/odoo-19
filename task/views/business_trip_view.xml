@@ -6,13 +6,13 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="employee_id"/>
                 <field name="manager_id"/>
                 <field name="destination"/>
                 <field name="purpose"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="budget"/>
+                <field name="budget_per_person"/>
+                <field name="total_budget"/>
                 <field name="expense_ids"/>
                 <field name="total_expenses"/>
                 <field name="currency_id"/>
@@ -24,37 +24,90 @@
         <field name="model">business.trip</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_visit_website"
+                            type="object"
+                            string="Open External Link"
+                            class="btn-danger"/>
+
+                    <button name="change_state"
+                            context="{'state': 'submitted'}"
+                            string="Submit"
+                            invisible="state != 'draft'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_state"
+                            context="{'state': 'approved'}"
+                            string="Approved"
+                            invisible="state != 'submitted'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_state"
+                            context="{'state': 'in_progress'}"
+                            string="Start Trip"
+                            invisible="state != 'approved'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_state"
+                            context="{'state': 'completed'}"
+                            string="Complete Trip"
+                            invisible="state != 'in_progress'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_state"
+                            context="{'state': 'cancelled'}"
+                            string="Cancelled"
+                            invisible="state in ('cancelled', 'in_progress', 'completed')"
+                            type="object"
+                            class="btn-secondary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,in_progress"/>
+                </header>
                 <sheet>
-                    <field name="name"/>
+                    <a>Name</a>
+                    <p>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </p>
                     <group>
                         <group>
-                            <field name="employee_id"/>
+                            <field name="employee_ids" widget="many2many_tags"
+                                   readonly="state in ('approved', 'in_progress', 'completed', 'cancelled')"/>
                             <field name="manager_id"/>
                             <field name="destination"/>
                             <field name="purpose"/>
-                        </group>
-                        <group>
                             <field name="start_date"/>
                             <field name="end_date"/>
-                            <field name="budget"/>
+                        </group>
+                        <group>
+                            <field name="budget_per_person"/>
+                            <field name="total_budget"/>
                             <field name="total_expenses"/>
+                            <field name="remaining_amount"/>
                             <field name="currency_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Expenses">
-                            <group>
-                                <field name="expense_ids">
-                                    <list editable="bottom">
-                                        <field name="description"/>
-                                        <field name="expense_type"/>
-                                        <field name="expense_date"/>
-                                        <field name="amount"/>
-                                        <field name="currency_id"/>
-                                        <field name="receipt_reference"/>
-                                    </list>
-                                </field>
-                            </group>
+                            <field name="expense_ids">
+                                <list decoration-secondary="state == 'rejected'"
+                                      decoration-primary="state == 'submitted'"
+                                      decoration-succuess="state == 'approved'">
+                                    <field name="description"/>
+                                    <field name="expense_type"/>
+                                    <field name="expense_date"/>
+                                    <field name="amount"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Employee">
+                            <field name="trip_employee_ids"
+                                   readonly="state in ('approved', 'in_progress', 'completed', 'cancelled')">
+                                <list>
+                                    <field name="employee_id"/>
+                                    <field name="personal_expense_total"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

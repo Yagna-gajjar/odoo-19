@@ -1,6 +1,5 @@
 from odoo import models, fields
 
-
 class SaleOrder(models.Model):
     _inherit = ["sale.order",'mail.thread', 'mail.activity.mixin']
     credit_per = fields.Float(string='Credit (%)')

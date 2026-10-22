@@ -4,6 +4,7 @@
     "depends": ["base", "sale", "mail", "purchase", "hr"],
     "data": [
         'security/ir.model.access.csv',
+        "data/cron_data.xml",
         "views/res_partner_views.xml",
         "views/res_config_settings_view.xml",
         "views/employee_leave_view.xml",
@@ -19,7 +20,9 @@
         "views/employee_asset_assignment.xml",
         "views/employee_asset.xml",
         "views/assets_management_menu.xml",
-        "views/business_trip_view.xml"
+        "views/business_trip_view.xml",
+        "views/business_trip_expenses_view.xml",
+        "views/product_template_view.xml"
     ],
     "installable": True,
 }

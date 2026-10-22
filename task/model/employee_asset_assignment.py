@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from datetime import date
+from datetime import date, timedelta, datetime
 
 class EmployeeAssetAssignment(models.Model):
     _name = 'employee.asset.assignment'
@@ -41,3 +41,17 @@ class EmployeeAssetAssignment(models.Model):
                 raise ValidationError(
                     'No assets are left.'
                 )
+
+    @api.model
+    def cron_return_data(self):
+        today = fields.Date.today()
+
+        assignments = self.search([
+            ('state', '=', 'assigned'),
+            ('return_date', '!=', False),
+            ('return_date', '<', today),
+        ])
+
+        assignments.write({
+            'state': 'returned',
+        })

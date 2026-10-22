@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="business_trip_expense_list_view" model="ir.ui.view">
+        <field name="name">business.trip.expense.list.view</field>
+        <field name="model">business.trip.expense</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="trip_id"/>
+                <field name="expense_type"/>
+                <field name="expense_date"/>
+                <field name="amount"/>
+                <field name="currency_id"/>
+                <field name="description"/>
+                <field name="receipt_reference"/>
+            </list>
+        </field>
+    </record>
+    <record id="business_trip_expense_form_view" model="ir.ui.view">
+        <field name="name">business.trip.expense.form.view</field>
+        <field name="model">business.trip.expense</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="change_expense_state"
+                            context="{'state': 'submitted'}"
+                            string="Submit"
+                            invisible="state != 'draft'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_expense_state"
+                            context="{'state': 'approved'}"
+                            string="Approved"
+                            invisible="state != 'submitted'"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="change_expense_state"
+                            context="{'state': 'rejected'}"
+                            string="Rejected"
+                            invisible="state in ('rejected')"
+                            type="object"
+                            class="btn-secondary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved"/>
+                </header>
+                <sheet>
+                    <a>Expense Description</a>
+                    <p>
+                        <h1>
+                            <field name="description"/>
+                        </h1>
+                    </p>
+                    <group>
+                        <group>
+                            <field name="expense_type"/>
+                            <field name="expense_date"/>
+                            <field name="receipt_reference"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="currency_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="business_trip_expenses_action" model="ir.actions.act_window">
+        <field name="name">Business Trip</field>
+        <field name="res_model">business.trip.expense</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
