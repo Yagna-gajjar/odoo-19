@@ -5,6 +5,7 @@
     "data": [
         'security/ir.model.access.csv',
         "data/cron_data.xml",
+        "data/automatic_invoice_cron.xml",
         "views/res_partner_views.xml",
         "views/res_config_settings_view.xml",
         "views/employee_leave_view.xml",

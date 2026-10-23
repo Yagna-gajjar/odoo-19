@@ -15,6 +15,7 @@ class AccountMove(models.Model):
         tax_slot = vendor.tax_configuration_ids.search(
             [('start_date', '<=', self.invoice_date), ('end_date', '>=', self.invoice_date),
              ('company_id', '=', self.company_id), ('limit', '<', total_bill), ('tax_id', '=', self.tax_id)])
+
         self.tax_amount = 0
         for tax in tax_slot:
             extra_amount = total_bill - tax.limit

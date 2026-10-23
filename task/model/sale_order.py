@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class SaleOrder(models.Model):
     _inherit = ["sale.order",'mail.thread', 'mail.activity.mixin']
@@ -79,3 +79,18 @@ class SaleOrder(models.Model):
                                     'summary': 'Urgent Order',
                                     'note': '<p>Please review this urgent sale order</p>',
                                 })
+
+    @api.model
+    def cron_create_invoice(self):
+        orders = self.search([
+            ('state', '=', 'sale'),
+            ('invoice_status', '=', 'to invoice'),
+        ])
+
+        for order in orders:
+            pickings = order.picking_ids.filtered(
+                lambda p: p.picking_type_id.sequence_code == 'OUT' and p.state == 'done'
+            )
+            for p in pickings:
+                p.is_invoiced = True
+            order._create_invoices()

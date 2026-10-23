@@ -5,6 +5,7 @@ class StockPicking(models.Model):
     urgent_order = fields.Boolean(string='Urgent Order', compute='_compute_order_configs', default=False)
     transfer = fields.Boolean(string='Transfer', compute='_compute_order_configs', default=False)
     invoicing = fields.Boolean(string='Invoicing', compute='_compute_order_configs', default=False)
+    is_invoiced = fields.Boolean(string='Is Invoiced', default=False)
 
     def _compute_order_configs(self):
         for record in self:
