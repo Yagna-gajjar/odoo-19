@@ -1,7 +1,7 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, Command
 
 class SaleOrder(models.Model):
-    _inherit = ["sale.order",'mail.thread', 'mail.activity.mixin']
+    _inherit = ["sale.order", 'mail.thread', 'mail.activity.mixin']
     credit_per = fields.Float(string='Credit (%)')
     credit_amount = fields.Float(string='Credit Amount')
 
@@ -85,12 +85,8 @@ class SaleOrder(models.Model):
         orders = self.search([
             ('state', '=', 'sale'),
             ('invoice_status', '=', 'to invoice'),
+            ('invoicing', '=', True)
         ])
 
         for order in orders:
-            pickings = order.picking_ids.filtered(
-                lambda p: p.picking_type_id.sequence_code == 'OUT' and p.state == 'done'
-            )
-            for p in pickings:
-                p.is_invoiced = True
             order._create_invoices()

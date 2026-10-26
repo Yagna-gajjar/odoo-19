@@ -25,11 +25,6 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_visit_website"
-                            type="object"
-                            string="Open External Link"
-                            class="btn-danger"/>
-
                     <button name="change_state"
                             context="{'state': 'submitted'}"
                             string="Submit"

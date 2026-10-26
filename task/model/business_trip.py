@@ -22,16 +22,6 @@ class BusinessTrip(models.Model):
                                         ('in_progress', 'In Progress'), ('completed', 'Completed'),
                                         ('cancelled', 'Cancelled')])
 
-    # ========================= TEMP ==================================
-    def action_visit_website(self):
-        """Redirects the user to an external link or field value."""
-        return {
-            'type': 'ir.actions.act_url',
-            'url': 'https://www.odoo.com',
-            'target': 'new',  # 'new', 'self'
-        }
-    # ========================= TEMP ==================================
-
     @api.depends('budget_per_person', 'employee_ids')
     def _calculate_total_budget(self):
         for rec in self:
