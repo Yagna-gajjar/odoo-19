@@ -21,6 +21,12 @@ class BusinessTrip(models.Model):
                              selection=[('draft', 'Draft'), ('submitted', 'Submitted'), ('approved', 'Approved'),
                                         ('in_progress', 'In Progress'), ('completed', 'Completed'),
                                         ('cancelled', 'Cancelled')])
+    number_of_employee = fields.Integer(string='Total Employee', compute='_calculate_employee')
+
+    @api.depends('trip_employee_ids')
+    def _calculate_employee(self):
+        for rec in self:
+            rec.number_of_employee = len(rec.trip_employee_ids)
 
     @api.depends('budget_per_person', 'employee_ids')
     def _calculate_total_budget(self):

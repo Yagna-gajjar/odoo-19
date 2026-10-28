@@ -53,12 +53,38 @@
                             <field name="expense_type"/>
                             <field name="expense_date"/>
                             <field name="receipt_reference"/>
+                            <field name="number_of_employee" />
+                            <field name="distribute_equally"/>
+                            <field name="all_employees"/>
                         </group>
                         <group>
                             <field name="amount"/>
+                            <field name="remaining_amount" decoration-danger="remaining_amount &lt; 0"
+                                   invisible="per_or_amount != 'amount'"/>
+
+                            <field name="remaining_percentage" decoration-danger="remaining_percentage &lt; 0"
+                                   invisible="per_or_amount != 'percentage'"/>
                             <field name="currency_id"/>
+                            <field name="trip_employee_ids" invisible="1"/>
+                            <field name="paid_by"/>
+                            <field name="company_sponsored"/>
+                            <field name="per_or_amount"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Share">
+                            <field name="share_employees_ids">
+                                <list editable="bottom">
+                                    <field name="employee_ids" domain="[('id', 'in', parent.trip_employee_ids)]"/>
+                                    <field name="trip_expense_id" column_invisible="1"/>
+                                    <field name="percentage"
+                                           readonly="distribute_equally or per_or_amount == 'amount'"/>
+                                    <field name="amount"
+                                           readonly="distribute_equally or per_or_amount == 'percentage'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

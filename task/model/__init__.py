@@ -16,7 +16,4 @@ from . import product_quantity
 from . import purchase_order_line
 from . import employee_asset_assignment
 from . import employee_asset
-from . import business_trip
-from . import business_trip_expense
-from . import business_trip_employee
 from . import product_template

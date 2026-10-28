@@ -21,8 +21,6 @@
         "views/employee_asset_assignment.xml",
         "views/employee_asset.xml",
         "views/assets_management_menu.xml",
-        "views/business_trip_view.xml",
-        "views/business_trip_expenses_view.xml",
         "views/product_template_view.xml"
     ],
     "installable": True,

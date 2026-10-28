@@ -1,0 +1,26 @@
+<odoo>
+    <record id="module_category_business_trip" model="ir.module.category">
+        <field name="name">Business Trip</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="privilege_business_trip" model="res.groups.privilege">
+        <field name="name">Business Trip</field>
+        <field name="category_id" ref="business_trip.module_category_business_trip"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_business_trip_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="business_trip.privilege_business_trip"/>
+        <field name="implied_ids"
+               eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_business_trip_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="business_trip.privilege_business_trip"/>
+        <field name="implied_ids"
+               eval="[(4, ref('business_trip.group_business_trip_user'))]"/>
+    </record>
+</odoo>

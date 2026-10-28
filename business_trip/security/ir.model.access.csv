@@ -1,0 +1,9 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_business_trip_user,business.trip.user,model_business_trip,business_trip.group_business_trip_user,1,1,1,0
+access_business_trip_manager,business.trip.manager,model_business_trip,business_trip.group_business_trip_manager,1,1,1,1
+access_business_trip_expense_user,business.trip.expense.user,model_business_trip_expense,business_trip.group_business_trip_user,1,1,1,0
+access_business_trip_expense_manager,business.trip.expense.manager,model_business_trip_expense,business_trip.group_business_trip_manager,1,1,1,1
+access_business_trip_employee_user,business.trip.employee.user,model_business_trip_employee,business_trip.group_business_trip_user,1,1,1,0
+access_business_trip_employee_manager,business.trip.employee.manager,model_business_trip_employee,business_trip.group_business_trip_manager,1,1,1,1
+access_trip_expenses_share_user,trip.expenses.share.user,model_trip_expenses_share,business_trip.group_business_trip_user,1,1,1,0
+access_trip_expenses_share_manager,trip.expenses.share.manager,model_trip_expenses_share,business_trip.group_business_trip_manager,1,1,1,1
