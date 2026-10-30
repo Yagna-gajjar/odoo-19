@@ -1,8 +1,6 @@
 from odoo import models, fields, api
 from datetime import timedelta
-
 from odoo.exceptions import ValidationError
-
 
 class EstatePropertyOffer(models.Model):
     _name = 'estate.property.offer'
@@ -29,6 +27,7 @@ class EstatePropertyOffer(models.Model):
         string='Property',
         required=True
     )
+
     property_type_id = fields.Many2one(
         related='property_id.property_type_id',
         string='Property Type'
@@ -41,6 +40,7 @@ class EstatePropertyOffer(models.Model):
         compute='_compute_date_deadline',
         inverse='_inverse_date_deadline'
     )
+
     property_state = fields.Selection(
         related='property_id.state',
         string='Property State',
@@ -109,5 +109,4 @@ class EstatePropertyOffer(models.Model):
             max_price = max_price_data.price
             if max_price > new_price:
                 raise ValidationError(f"min price is {max_price}")
-
         return super().create(vals_list)

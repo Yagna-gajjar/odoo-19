@@ -10,6 +10,9 @@
                 <field name="transfer"/>
                 <field name="invoicing"/>
             </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="profit_amount"/>
+            </xpath>
         </field>
     </record>
 </odoo>

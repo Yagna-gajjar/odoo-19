@@ -116,7 +116,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-
     <menuitem
             id="menu_business_trip"
             name="Business Trip"

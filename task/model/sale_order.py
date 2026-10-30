@@ -9,6 +9,8 @@ class SaleOrder(models.Model):
     transfer = fields.Boolean(string='Transfer')
     invoicing = fields.Boolean(string='Invoicing')
 
+    profit_amount = fields.Float(string='Profit Amount', compute='_compute_profit_amount')
+
     def get_credit_per(self):
         self.ensure_one()
         self.credit_per = 1
@@ -90,3 +92,8 @@ class SaleOrder(models.Model):
 
         for order in orders:
             order._create_invoices()
+
+    @api.depends('order_line')
+    def _compute_profit_amount(self):
+        for order in self:
+            order.profit_amount = 0.0

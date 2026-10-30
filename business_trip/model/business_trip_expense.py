@@ -26,10 +26,10 @@ class BusinessTripExpense(models.Model):
     )
     share_employees_ids = fields.One2many(string='Share', comodel_name='trip.expenses.share',
                                           inverse_name='trip_expense_id')
-    company_sponsored = fields.Boolean(string='Company Sponsored')
-    distribute_equally = fields.Boolean(string='Distribute Equally', default=True)
-    all_employees = fields.Boolean(string='All Employees')
-    amount = fields.Monetary(string='Amount', currency_field='currency_id')
+    company_sponsored = fields.Boolean(string='Company Sponsored', store=True)
+    distribute_equally = fields.Boolean(string='Distribute Equally', default=True, store=True)
+    all_employees = fields.Boolean(string='All Employees', store=True)
+    amount = fields.Monetary(string='Amount', currency_field='currency_id', store=True)
     currency_id = fields.Many2one(string='Currency', comodel_name='res.currency')
     receipt_reference = fields.Char(string='Receipt Reference')
     state = fields.Selection(
@@ -125,6 +125,7 @@ class BusinessTripExpense(models.Model):
                 'percentage': share_percentage,
             })
 
+
     @api.onchange(
         'amount',
         'distribute_equally',
@@ -132,7 +133,6 @@ class BusinessTripExpense(models.Model):
         'company_sponsored',
     )
     def _onchange_recompute_shares(self):
-        print("onchange called")
         self._recompute_shares()
 
     @api.model_create_multi

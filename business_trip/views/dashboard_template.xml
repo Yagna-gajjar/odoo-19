@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="dashboard_template">
+        <div class="container mt-4">
+            <h1>Business Trip Dashboard</h1>
+        </div>
+        <t t-call-assets="web.assets_frontend"/>
+    </template>
+</odoo>

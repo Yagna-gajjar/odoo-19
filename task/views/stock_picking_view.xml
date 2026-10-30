@@ -5,11 +5,20 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
+
             <xpath expr="//field[@name='origin']" position="after">
                 <field name="urgent_order"/>
                 <field name="transfer"/>
                 <field name="invoicing"/>
             </xpath>
+
+            <xpath expr="//button[@name='action_put_in_pack']" position="before">
+                <button name="massive_packaging"
+                        type="object"
+                        string="Massive"
+                        class="btn-primary"/>
+            </xpath>
+
         </field>
     </record>
 </odoo>

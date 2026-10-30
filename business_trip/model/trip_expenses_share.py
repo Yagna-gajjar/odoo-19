@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-
 class TripExpensesShare(models.Model):
     _name = 'trip.expenses.share'
     _rec_name = 'trip_expense_id'
@@ -29,8 +28,10 @@ class TripExpensesShare(models.Model):
     )
 
 
-    amount = fields.Float(string='Amount')
-    percentage = fields.Float(string='Percentage')
+    amount = fields.Float(string='Amount', store=True)
+    percentage = fields.Float(string='Percentage', store=True)
+
+
 
     @api.onchange('percentage')
     def _onchange_percentage(self):
