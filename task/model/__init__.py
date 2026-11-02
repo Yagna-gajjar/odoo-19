@@ -17,3 +17,4 @@ from . import purchase_order_line
 from . import employee_asset_assignment
 from . import employee_asset
 from . import product_template
+from . import stock_move_line

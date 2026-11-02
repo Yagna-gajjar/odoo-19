@@ -1,4 +1,5 @@
 from odoo import models, fields
+from odoo.tools.misc import clean_context
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
@@ -53,5 +54,9 @@ class StockPicking(models.Model):
                                     'note': '<p>Please review this urgent transfer</p>',
                                 })
 
-    def massive_packaging(self):
-        print("massive package")
+    def massive_packaging(self, *, package_id=False, package_type_id=False, package_name=False):
+        self.ensure_one()
+        if self.env.context.get('sml_specific_default'):
+            self = self.with_context(clean_context(self.env.context))
+        if self.state not in ('done', 'cancel'):
+            return self.move_line_ids.massive_put_in_pack()
