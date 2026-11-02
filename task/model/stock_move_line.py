@@ -1,6 +1,5 @@
 import math
-
-from odoo import models, _
+from odoo import models
 
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
