@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="bab_root_menu"
+        name="Butter &amp; Bloom"
+        sequence="50"
+    />
+    <record id="raw_product_action" model="ir.actions.act_window">
+        <field name="name">Raw Materials</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">
+            [
+                ('product_type', '=', 'raw'),
+                ('company_id.company_registry', '=', 'REG030604')
+            ]
+        </field>
+        <field name="context">
+            {
+                'default_product_type': 'raw',
+                'default_sale_ok': False
+            }
+        </field>
+    </record>
+
+    <record id="manufactured_product_action" model="ir.actions.act_window">
+        <field name="name">Manufactured Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">
+            [
+                ('product_type', '=', 'manufactured'),
+                ('company_id.company_registry', '=', 'REG030604')
+            ]
+        </field>
+        <field name="context">
+            {
+                'default_product_type': 'manufactured',
+                'default_sale_ok': False,
+                'default_purchase_ok': False
+            }
+        </field>
+    </record>
+
+    <record id="final_product_action" model="ir.actions.act_window">
+        <field name="name">Final Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">
+            [
+                ('product_type', '=', 'final'),
+                ('company_id.company_registry', '=', 'REG030604')
+            ]
+        </field>
+        <field name="context">
+            {
+                'default_product_type': 'final',
+                'default_purchase_ok': False
+            }
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_products"
+        name="Products"
+        parent="bab_root_menu"
+        sequence="1"
+    />
+
+    <menuitem
+        id="menu_raw_product"
+        name="Raw Materials"
+        parent="menu_products"
+        action="raw_product_action"
+        sequence="11"
+    />
+
+    <menuitem
+        id="menu_manufactured_product"
+        name="Manufactured Products"
+        parent="menu_products"
+        action="manufactured_product_action"
+        sequence="12"
+    />
+
+    <menuitem
+        id="menu_final_product"
+        name="Final Products"
+        parent="menu_products"
+        action="final_product_action"
+        sequence="13"
+    />
+
+    <menuitem
+        id="menu_configuration"
+        name="Configuration"
+        parent="bab_root_menu"
+        sequence="2"
+    />
+    <menuitem
+        id="menu_shop_vendor"
+        name="Shop Vendor"
+        parent="menu_configuration"
+        action="shop_vendor_action"
+        sequence="21"
+    />
+
+</odoo>
