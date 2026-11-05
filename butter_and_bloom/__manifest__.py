@@ -7,6 +7,7 @@
         'mrp'
     ],
     "data": [
+        'security/ir.model.access.csv',
         'views/product_template_view.xml',
         'views/mrp_bom_line_view.xml',
         'views/shop_vendor_view.xml',

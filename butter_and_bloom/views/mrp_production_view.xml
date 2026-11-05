@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_list_view" model="ir.ui.view">
+        <field name="name">mrp.production.list.view</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <field name="" />
+        </field>
+    </record>
+    <record id="shop_vendor_action" model="ir.actions.act_window">
+        <field name="name">Shop Vendor</field>
+        <field name="res_model">shop.vendor</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>
