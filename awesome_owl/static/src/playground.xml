@@ -1,5 +1,4 @@
 <templates>
-
     <t t-name="awesome_owl.Playground">
         <div class="d-flex justify-content-center align-items-center vh-100 bg-success bg-opacity-25">
             <div>
@@ -25,7 +24,6 @@
                             <t t-esc="formattedValue(state.time.s)"/>
                         </h3>
                     </t>
-
                     <t t-if="state.startAgain">
                         <button
                                 class="btn btn-secondary bg-success rounded-3 text-white px-3 py-2 mb-3"
@@ -63,5 +61,4 @@
             </div>
         </div>
     </t>
-
 </templates>

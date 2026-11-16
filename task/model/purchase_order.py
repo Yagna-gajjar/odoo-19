@@ -11,12 +11,14 @@ class PurchaseOrder(models.Model):
     allowed_vendors_products_id = fields.Many2one(comodel_name='vendor.allowed.products', string='Allowed Products')
     allowed_product_lines_ids = fields.One2many(comodel_name='product.quantity', related='allowed_vendors_products_id.allowed_product_lines_ids', string='Allowed product lines')
 
-    @api.constrains('amount_untaxed')
+    @api.constrains('amount_untaxed', 'partner_id')
     def _check_untaxed_amount_limit(self):
-        if self.partner_id.purchase_capacity:
-            if self.amount_untaxed > self.partner_id.purchase_capacity:
-                raise ValidationError(f'Untaxed amount exceded limit of {self.partner_id.purchase_capacity}')
-
+        for order in self:
+            if order.partner_id.purchase_capacity:
+                if order.amount_untaxed > order.partner_id.purchase_capacity:
+                    raise ValidationError(
+                        "Purchase amount exceeds vendor capacity."
+                    )
     @api.onchange('partner_id')
     def _compute_allowed_products(self):
         for record in self:

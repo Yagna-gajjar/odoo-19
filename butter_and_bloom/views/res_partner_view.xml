@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_custom_res_partner" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form,activity</field>
+         <field name="domain">
+            [
+            ('company_id.company_registry', '=', 'REG030604')
+            ]
+        </field>
+    </record>
+</odoo>

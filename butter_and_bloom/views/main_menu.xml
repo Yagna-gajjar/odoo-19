@@ -71,7 +71,7 @@
             id="menu_products"
             name="Products"
             parent="bab_root_menu"
-            sequence="1"
+            sequence="10"
     />
 
     <menuitem
@@ -97,20 +97,27 @@
             action="final_product_action"
             sequence="13"
     />
+    <menuitem
+            id="menu_mrp_bom"
+            name="Recipe"
+            parent="bab_root_menu"
+            action="action_custom_mrp_bom"
+            sequence="20"
+    />
 
     <menuitem
             id="menu_manufacturing"
             name="Manufacturing"
             parent="bab_root_menu"
             action="mrp_production_action"
-            sequence="14"
+            sequence="30"
     />
 
     <menuitem
             id="menu_configuration"
             name="Configuration"
             parent="bab_root_menu"
-            sequence="15"
+            sequence="40"
     />
 
     <menuitem
@@ -118,7 +125,37 @@
             name="Shop Vendor"
             parent="menu_configuration"
             action="shop_vendor_action"
-            sequence="16"
+            sequence="41"
+    />
+    <menuitem
+            id="menu_custom_res_partner"
+            name="Customer"
+            parent="menu_configuration"
+            action="action_custom_res_partner"
+            sequence="42"
     />
 
+    <menuitem
+            id="menu_custom_sales"
+            name="Sales"
+            parent="bab_root_menu"
+            action="action_custom_sale_order"
+            sequence="50"
+    />
+
+    <menuitem
+            id="menu_custom_sales"
+            name="Sales"
+            parent="bab_root_menu"
+            action="action_custom_sale_order"
+            sequence="50"
+    />
+
+    <menuitem
+            id="menu_custom_purchase"
+            name="Purchase Orders"
+            parent="bab_root_menu"
+            action="action_custom_purchase_order"
+            sequence="60"
+    />
 </odoo>

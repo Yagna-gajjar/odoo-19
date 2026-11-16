@@ -3,3 +3,7 @@ from . import res_company
 from . import mrp_bom_line
 from . import mrp_bom
 from . import shop_vendor
+from . import sale_order
+from . import sale_order_line
+from . import res_partner
+from . import purchase_order

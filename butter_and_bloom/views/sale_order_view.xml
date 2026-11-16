@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_custom_sale_order" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,kanban,form,calendar,activity</field>
+        <field name="domain">
+            [
+            ('company_id.company_registry', '=', 'REG030604')
+            ]
+        </field>
+    </record>
+</odoo>

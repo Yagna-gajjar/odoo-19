@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_attribute" model="ir.ui.view">
+        <field name="name">view.product.attribute</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='current_variant']" position="before">
+                    <field name="company_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
