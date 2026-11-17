@@ -1,0 +1,83 @@
+$white: #e8dcd2;
+$beige: #f8f5ef;
+$brown: #38271f;
+$brown-light: #674b3b;
+$test: #4169E1;
+
+.cafe-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: $beige;
+    color: $brown;
+
+    .cafe-sidebar {
+        width: 240px;
+        background: $brown;
+        color: white;
+        padding: 25px;
+
+        h2 {
+            margin-bottom: 40px;
+            font-size: 23px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            a {
+                color: $white;
+                text-decoration: none;
+                padding: 12px;
+                border-radius: 8px;
+
+                &:hover,
+                &.active {
+                    background: $brown-light;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .cafe-main {
+        flex: 1;
+        padding: 35px;
+
+        .cafe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .cafe-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+            h4 {
+                color: $brown-light;
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 28px;
+                margin: 15px 0;
+            }
+
+            p {
+                color: $brown-light;
+                font-size: 12px;
+            }
+        }
+    }
+}
