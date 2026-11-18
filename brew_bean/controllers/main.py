@@ -1,9 +1,7 @@
 from odoo import http
 from odoo.http import request
 
-
 class CafeDashboard(http.Controller):
-
     @http.route(
         '/cafe/dashboard',
         type='http',
@@ -11,4 +9,13 @@ class CafeDashboard(http.Controller):
         website=True
     )
     def dashboard(self, **kwargs):
-        return request.render('brew_bean.cafe_dashboard')
+        return request.render('brew_bean.CafeDashboard')
+
+    @http.route(
+        '/cafe/tables',
+        type='http',
+        auth='user',
+        website=True
+    )
+    def tables(self, **kwargs):
+        return request.render('brew_bean.cafe_table')

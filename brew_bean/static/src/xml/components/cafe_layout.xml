@@ -1,0 +1,34 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="brew_bean.CafeLayout" owl="1">
+        <div class="cafe-layout">
+
+            <aside class="cafe-sidebar">
+                <div class="brand">
+                    <h2>Brew &amp; Bean</h2>
+                </div>
+
+                <nav>
+                    <a href="/cafe/dashboard">Dashboard</a>
+                    <a href="/cafe/tables">Tables</a>
+                    <a href="/cafe/menu">Menu</a>
+                    <a href="/cafe/orders">Orders</a>
+                </nav>
+            </aside>
+
+            <main class="cafe-main">
+                <header class="cafe-topbar">
+                    <h2 t-esc="props.title"/>
+                </header>
+
+                <section class="cafe-content">
+                    <t t-slot="default"/>
+                </section>
+            </main>
+
+        </div>
+    </t>
+
+</templates>

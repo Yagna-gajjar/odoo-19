@@ -17,6 +17,10 @@ class CafeOrder(models.Model):
     ])
     total_amount = fields.Float(string='Total Amount', compute='_calculate_total_amount')
 
-    @api.depends('order_line_ids')
+    @api.depends('order_line_ids.subtotal')
     def _calculate_total_amount(self):
         for rec in self:
+            total_amount = 0
+            for order in rec.order_line_ids:
+                total_amount += order.subtotal
+            rec.total_amount = total_amount

@@ -10,7 +10,7 @@
 
                     <nav>
                         <a class="active" href="#">Dashboard</a>
-                        <a href="#">Orders</a>
+                        <a href="cafe/tables">Orders</a>
                         <a href="#">Tables</a>
                         <a href="#">Menu</a>
                         <a href="#">Customers</a>
