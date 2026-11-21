@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="stock_picking_view_form" model="ir.ui.view">
         <field name="name">stock.picking.view.form</field>
@@ -10,12 +10,14 @@
                 <field name="transfer"/>
                 <field name="invoicing"/>
             </xpath>
-
             <xpath expr="//button[@name='action_put_in_pack']" position="before">
                 <button name="massive_packaging"
                         type="object"
                         string="Massive"
                         class="btn-primary"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', allowed_partner_ids)]</attribute>
             </xpath>
         </field>
     </record>

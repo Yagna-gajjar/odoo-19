@@ -23,6 +23,9 @@
                     </field>
                 </page>
             </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('is_vendor', '=', True), ('active', '=', True)]</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

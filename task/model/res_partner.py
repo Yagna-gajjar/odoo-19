@@ -6,3 +6,5 @@ class ResPartner(models.Model):
     credits = fields.Float(string="Credits")
     purchase_capacity = fields.Float(string="Purchase Capacity")
     tax_configuration_ids = fields.One2many(comodel_name='tax.configuration', string='Tax Configuration', inverse_name='partner_id')
+    is_customer = fields.Boolean(string='Customer')
+    is_vendor = fields.Boolean(string='Vendor')

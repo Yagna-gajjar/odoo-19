@@ -22,6 +22,12 @@
                     </field>
                 </page>
             </xpath>
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="is_customer"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="is_vendor"/>
+            </xpath>
         </field>
     </record>
 </odoo>

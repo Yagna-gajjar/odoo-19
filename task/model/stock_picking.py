@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.tools.misc import clean_context
 
 class StockPicking(models.Model):
@@ -6,6 +6,8 @@ class StockPicking(models.Model):
     urgent_order = fields.Boolean(string='Urgent Order', compute='_compute_order_configs', default=False)
     transfer = fields.Boolean(string='Transfer', compute='_compute_order_configs', default=False)
     invoicing = fields.Boolean(string='Invoicing', compute='_compute_order_configs', default=False)
+    picking_type_code = fields.Selection(related='picking_type_id.code', string='Picking Type Code')
+    allowed_partner_ids = fields.Many2many(comodel_name='res.partner', compute='_allowed_partner_domain')
 
     def _compute_order_configs(self):
         for record in self:
@@ -60,3 +62,12 @@ class StockPicking(models.Model):
             self = self.with_context(clean_context(self.env.context))
         if self.state not in ('done', 'cancel'):
             return self.move_line_ids.massive_put_in_pack()
+
+    @api.depends("picking_type_code")
+    def _allowed_partner_domain(self):
+        for rec in self:
+            if rec.picking_type_code == 'incoming':
+                rec.allowed_partner_ids = self.env['res.partner'].search([('is_vendor', '=', True)])
+
+            if rec.picking_type_code == 'outgoing':
+                rec.allowed_partner_ids = self.env['res.partner'].search([('is_customer', '=', True)])
