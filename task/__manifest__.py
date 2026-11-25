@@ -20,7 +20,9 @@
         "views/allowed_vendor_products.xml",
         "views/employee_asset_assignment.xml",
         "views/employee_asset.xml",
+        "views/product_template_view.xml",
         'views/product_variant_wizard_views.xml',
+        'views/sale_order_line_view.xml',
         "views/assets_management_menu.xml"
     ],
     "installable": True,

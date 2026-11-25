@@ -66,6 +66,7 @@ class StockPicking(models.Model):
     @api.depends("picking_type_code")
     def _allowed_partner_domain(self):
         for rec in self:
+            rec.allowed_partner_ids = self.env['res.partner'].search([])
             if rec.picking_type_code == 'incoming':
                 rec.allowed_partner_ids = self.env['res.partner'].search([('is_vendor', '=', True)])
 

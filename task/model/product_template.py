@@ -1,9 +1,10 @@
 from odoo import models, fields, Command
 from odoo.exceptions import UserError
 
-
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
+
+    product_specification_id = fields.One2many(string='Product Specification', comodel_name='product.specification', inverse_name='product_tmpl_id')
 
     def action_open_manual_variant_wizard(self):
         self.ensure_one()

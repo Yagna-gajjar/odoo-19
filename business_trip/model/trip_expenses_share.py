@@ -1,11 +1,11 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+
 class TripExpensesShare(models.Model):
     _name = 'trip.expenses.share'
     _rec_name = 'trip_expense_id'
     _description = 'Trip Expense Share'
-
 
     employee_ids = fields.Many2one(
         comodel_name='hr.employee',
@@ -27,11 +27,8 @@ class TripExpensesShare(models.Model):
         related='trip_expense_id.distribute_equally',
     )
 
-
     amount = fields.Float(string='Amount', store=True)
     percentage = fields.Float(string='Percentage', store=True)
-
-
 
     @api.onchange('percentage')
     def _onchange_percentage(self):
@@ -39,12 +36,12 @@ class TripExpensesShare(models.Model):
             expense = share.trip_expense_id
 
             if (
-                expense
-                and expense.per_or_amount == 'percentage'
-                and expense.amount
+                    expense
+                    and expense.per_or_amount == 'percentage'
+                    and expense.amount
             ):
                 share.amount = (
-                    expense.amount * share.percentage / 100
+                        expense.amount * share.percentage / 100
                 )
 
     @api.onchange('amount')
@@ -53,12 +50,12 @@ class TripExpensesShare(models.Model):
             expense = share.trip_expense_id
 
             if (
-                expense
-                and expense.per_or_amount == 'amount'
-                and expense.amount
+                    expense
+                    and expense.per_or_amount == 'amount'
+                    and expense.amount
             ):
                 share.percentage = (
-                    share.amount * 100 / expense.amount
+                        share.amount * 100 / expense.amount
                 )
 
     def _sync_share_values(self, changed_fields):
@@ -72,14 +69,14 @@ class TripExpensesShare(models.Model):
                 continue
 
             if (
-                expense.per_or_amount == 'percentage'
-                and 'percentage' in changed_fields
+                    expense.per_or_amount == 'percentage'
+                    and 'percentage' in changed_fields
             ):
                 share.amount = expense.amount * share.percentage / 100
 
             elif (
-                expense.per_or_amount == 'amount'
-                and 'amount' in changed_fields
+                    expense.per_or_amount == 'amount'
+                    and 'amount' in changed_fields
             ):
                 share.percentage = share.amount * 100 / expense.amount
 

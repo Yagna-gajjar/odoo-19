@@ -1,27 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <odoo>
-
-    <template id="page" name="Brew Bean">
-
-        <html>
-            <head>
-                <title>Brew Bean</title>
-
-<!--                <script type="text/javascript">-->
-<!--                    var odoo = {-->
-<!--                        csrf_token: "<t t-out='request.csrf_token(None)'/>",-->
-<!--                        debug: "<t t-out='debug'/>",-->
-<!--                        __session_info__: <t t-out="json.dumps(session_info)"/>,-->
-<!--                    };-->
-<!--                </script>-->
-
-                <t t-call-assets="brew_bean.assets_standalone_app"/>
-            </head>
-
-            <body/>
-        </html>
-
-    </template>
-
+    <data>
+          <template id="brew_bean.adminpanel" name="Awesome T-Shirt thank you">
+            <html>
+                <head>
+                    <t t-call-assets="brew_bean.assets_adminpanel"/>
+                </head>
+                <body>
+                </body>
+            </html>
+          </template>
+    </data>
 </odoo>

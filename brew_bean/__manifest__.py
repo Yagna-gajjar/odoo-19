@@ -1,27 +1,25 @@
 {
     "name": "Brew Bean",
-    "version": "1.4",
+    "version": "1.0",
     "depends": ["base", "web"],
 
     'data': [
-        'views/template.xml',
+        'views/templates.xml',
     ],
 
     'assets': {
-        'brew_bean.assets_standalone_app': [
+        'brew_bean.assets_adminpanel': [
             ('include', 'web._assets_helpers'),
+            ('include', 'web._assets_backend_helpers'),
             'web/static/src/scss/pre_variables.scss',
             'web/static/lib/bootstrap/scss/_variables.scss',
+            'web/static/lib/bootstrap/scss/_maps.scss',
             ('include', 'web._assets_bootstrap'),
             ('include', 'web._assets_core'),
-
-            'brew_bean/static/src/js/*',
-            'brew_bean/static/src/xml/*',
-            'brew_bean/static/src/css/*',
+            'web/static/src/libs/fontawesome/css/font-awesome.css',
+            'brew_bean/static/src/**/*',
+            'brew_bean/static/src/scss/**/*',
+            'brew_bean/static/src/components/dashboard/**/*'
         ],
-    },
-
-    'installable': True,
-    'application': True,
-    'license': 'LGPL-3',
+    }
 }

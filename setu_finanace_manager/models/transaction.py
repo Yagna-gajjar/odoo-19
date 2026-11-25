@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-
 class Transaction(models.Model):
     _name = 'transaction'
     _rec_name = 'title'
@@ -16,7 +15,6 @@ class Transaction(models.Model):
     )
     amount = fields.Float(string='Amount', required=True)
     remark = fields.Text(string='Remarks')
-
 
     @api.constrains('account_id', 'category_id', 'amount')
     def _check_account_balance(self):

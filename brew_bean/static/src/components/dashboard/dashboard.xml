@@ -1,0 +1,67 @@
+<templates>
+    <t t-name="brew_bean.Dashboard">
+         <div class="d-flex flex-column bg-brown text-white vh-100 p-3"
+             style="width: 250px;">
+
+            <div class="mb-4">
+                <h4 class="fw-bold mb-1">Brew &amp; Bean</h4>
+                <small class="text-secondary">ADMIN PANEL</small>
+            </div>
+            <ul class="nav nav-pills flex-column gap-2">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link active text-white">
+                        <i class="fa fa-dashboard me-2"/>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="fa fa-shopping-cart me-2"/>
+                        Orders
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="fa fa-coffee me-2"/>
+                        Products
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="fa fa-cubes me-2"/>
+                        Inventory
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="fa fa-users me-2"/>
+                        Customers
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="fa fa-bar-chart me-2"/>
+                        Reports
+                    </a>
+                </li>
+
+            </ul>
+            <div class="mt-auto pt-3 border-top border-secondary">
+                <a href="#" class="nav-link text-white">
+                    <i class="fa fa-cog me-2"/>
+                    Settings
+                </a>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            Dashboard
+        </div>
+    </t>
+</templates>

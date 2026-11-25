@@ -1,11 +1,7 @@
 from odoo import http
-from odoo.http import request
-
+from odoo.http import request, route
 
 class BrewBean(http.Controller):
-
-    @http.route('/home', type='http', auth='user')
-    def home(self):
-        return request.render(
-            'brew_bean.page'
-        )
+    @http.route(['/brew_bean'], type='http', auth='public')
+    def show_playground(self):
+        return request.render('brew_bean.adminpanel')
