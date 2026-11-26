@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_line_spec_list" model="ir.ui.view">
+        <field name="name">view.sale.order.line.spec.list</field>
+        <field name="model">sale.order.line.specification</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_product_id" />
+                <field name="specification_name" />
+                <field name="reject_limit" />
+                <field name="expect_limit" />
+            </list>
+        </field>
+    </record>
+</odoo>

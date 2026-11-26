@@ -6,6 +6,12 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
 
         <field name="arch" type="xml">
+            <header>
+                <button name="update_sale_specification"
+                        type="object"
+                        string="Update Specification"
+                        class="btn-secondary"/>
+            </header>
             <xpath expr="//notebook" position="inside">
                 <page string="Sales Quantity Control">
                     <field name="product_specification_id">

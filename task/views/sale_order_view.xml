@@ -5,6 +5,13 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <header>
+                <button name="update_sale_specification"
+                        invisible="state != 'draft'"
+                        type="object"
+                        string="Update Specification"
+                        class="btn-secondary"/>
+            </header>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="urgent_order"/>
                 <field name="transfer"/>

@@ -23,6 +23,7 @@
         "views/product_template_view.xml",
         'views/product_variant_wizard_views.xml',
         'views/sale_order_line_view.xml',
+        'views/sale_order_line_specification.xml',
         "views/assets_management_menu.xml"
     ],
     "installable": True,

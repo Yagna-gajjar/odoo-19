@@ -11,6 +11,23 @@ class SaleOrder(models.Model):
 
     profit_amount = fields.Float(string='Profit Amount', compute='_compute_profit_amount')
 
+    def update_sale_specification(self):
+        for order in self.order_line:
+
+            product_specifications = self.env['product.specification'].search(
+                [('product_product_id', '=', order.product_id.id), ('show_to_customer', '=', True)])
+
+            order.specification_ids = [Command.clear()] + [
+                Command.create({
+                    'product_tmpl_id': spec.product_tmpl_id.id,
+                    'product_product_id': spec.product_product_id.id,
+                    'specification_name': spec.specification_name,
+                    'expect_limit': spec.expect_limit,
+                    'reject_limit': spec.reject_limit,
+                })
+                for spec in product_specifications
+            ]
+
     def get_credit_per(self):
         self.ensure_one()
         self.credit_per = 1
